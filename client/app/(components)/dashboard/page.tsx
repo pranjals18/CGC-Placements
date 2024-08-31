@@ -4,6 +4,7 @@ import { useExpandContext } from "@/app/(Context)/ExpandContext";
 import React from "react";
 import LineChart from "../(Charts)/LineChart";
 import Piechart from "../(Charts)/Piechart";
+import TableComponent from "../(Tables)/TableComponent";
 
 const Dashboard = () => {
   const { expand } = useExpandContext();
@@ -55,6 +56,10 @@ const Dashboard = () => {
           <Piechart />
         </div>
       </div>
+        <div className="mt-4 rounded-lg overflow-hidden bg-white">
+          <h1 className="text-2xl font-bold p-4">Recent Companies</h1>
+          <TableComponent />
+        </div>
     </div>
   );
 };
