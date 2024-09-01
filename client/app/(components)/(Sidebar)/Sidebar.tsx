@@ -28,7 +28,8 @@ const Sidebar = () => {
           onClick={() => setExpand(!expand)}
           className={`flex cursor-pointer overflow-hidden justify-between items-center py-4 px-2 pb-4 border-b h-[80px]`}
         >
-          <div className="bg-[url('/images/IIITDWD.jpeg')] w-[300px] h-[64px] bg-cover bg-no-repeat"></div>
+          {/* <div className="bg-[url('/images/IIITDWD.jpeg')] w-[300px] h-[64px] bg-cover bg-no-repeat"></div> */}
+          <div className="bg-[url('/images/CGC-5.jpg')] w-[300px] h-[64px] bg-cover bg-no-repeat"></div>
           {/* <button
             onClick={() => setExpand(!expand)}
             className="p-1.5 mx-3 rounded-lg bg-gray-50 hover:bg-gray-100"
@@ -60,7 +61,7 @@ const Sidebar = () => {
                     }`}
                   >
                     <link.icon
-                      className={`text-[1.6rem] transition-all ${
+                      className={`text-[1.4rem] transition-all ${
                         isActive && "text-black"
                       }`}
                     />
