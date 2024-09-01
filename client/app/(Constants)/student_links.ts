@@ -1,9 +1,10 @@
 import { GoHomeFill } from "react-icons/go";
-import { PiChartLineFill } from "react-icons/pi";
-import { MdCandlestickChart } from "react-icons/md";
 import { IconType } from "react-icons";
-import { MdInsertChart } from "react-icons/md";
-import { HiMiniBookmark } from "react-icons/hi2";
+import { MdOutlineBookmark } from "react-icons/md";
+import { TbUserFilled } from "react-icons/tb";
+import { BiSolidBriefcase  } from "react-icons/bi";
+import { FaLocationArrow } from "react-icons/fa6";
+
 
 interface Link {
   name: string;
@@ -14,27 +15,27 @@ interface Link {
 export const links: Link[] = [
   {
     name: "Dashboard",
-    path: "/dashboard",
+    path: "/",
     icon: GoHomeFill,
   },
   {
     name: "Jobs",
     path: "/jobs",
-    icon: MdInsertChart,
+    icon: BiSolidBriefcase ,
   },
   {
     name: "Track Job",
-    path: "/track_jobs",
-    icon: PiChartLineFill,
+    path: "/track-jobs",
+    icon: FaLocationArrow,
   },
   {
     name: "Bookmark",
     path: "/bookmarks",
-    icon: HiMiniBookmark,
+    icon: MdOutlineBookmark,
   },
   {
     name: "Profile",
     path: "/profile",
-    icon: MdCandlestickChart,
+    icon: TbUserFilled,
   },
 ];
