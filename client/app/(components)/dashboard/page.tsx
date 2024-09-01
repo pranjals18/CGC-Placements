@@ -16,7 +16,7 @@ const Dashboard = () => {
     >
       <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
         <div
-          className={`rounded-md flex flex-col gap-2 justify-end p-6 transition-all duration-300 h-36 bg-white shadow-lg ${
+          className={`rounded-md flex flex-col gap-2 justify-end p-6 transition-all duration-300 h-36 bg-white hover:shadow-xl ${
             expand ? "w-[calc(100%)]" : "w-[calc(100%)]"
           }`}
         >
@@ -24,7 +24,7 @@ const Dashboard = () => {
           <h3 className="text-lg text-gray-400">Total Companies</h3>
         </div>
         <div
-          className={`rounded-md flex flex-col gap-2 justify-end p-6 transition-all duration-300 h-36 bg-white shadow-lg ${
+          className={`rounded-md flex flex-col gap-2 justify-end p-6 transition-all duration-300 h-36 bg-white hover:shadow-xl ${
             expand ? "w-[calc(100%)]" : "w-[calc(100%)]"
           }`}
         >
@@ -32,7 +32,7 @@ const Dashboard = () => {
           <h3 className="text-lg text-gray-400">Eligible Companies</h3>
         </div>
         <div
-          className={`rounded-md flex flex-col gap-2 justify-end p-6 transition-all duration-300 h-36 bg-white shadow-lg ${
+          className={`rounded-md flex flex-col gap-2 justify-end p-6 transition-all duration-300 h-36 bg-white hover:shadow-xl ${
             expand ? "w-[calc(100%)]" : "w-[calc(100%)]"
           }`}
         >
@@ -40,7 +40,7 @@ const Dashboard = () => {
           <h3 className="text-lg text-gray-400">Applied Companies</h3>
         </div>
         <div
-          className={`rounded-md flex flex-col gap-2 justify-end p-6 transition-all duration-300 h-36 bg-white shadow-lg ${
+          className={`rounded-md flex flex-col gap-2 justify-end p-6 transition-all duration-300 h-36 bg-white hover:shadow-xl ${
             expand ? "w-[calc(100%)]" : "w-[calc(100%)]"
           }`}
         >
@@ -48,18 +48,21 @@ const Dashboard = () => {
           <h3 className="text-lg text-gray-400">In Progress</h3>
         </div>
       </div>
+      <h1 className="text-2xl font-bold mt-6 text-gray-600 border-b">
+        Analytics
+      </h1>
       <div className="flex max-lg:flex-col gap-4">
-        <div className="mt-4 lg:w-2/3">
+        <div className="mt-1 lg:w-2/3 transition-all duration-300 hover:shadow-xl shadow-black rounded-lg bg-white border border-gray-100">
           <LineChart />
         </div>
-        <div className="mt-4 lg:w-1/3">
+        <div className="mt-1 lg:w-1/3 transition-all duration-300 hover:shadow-xl shadow-black rounded-lg bg-white border border-gray-100">
           <Piechart />
         </div>
       </div>
-      <div className="mt-4 rounded-lg overflow-hidden bg-white">
-        <h1 className="text-2xl font-bold p-4 text-gray-600 border-b">
-          Recent Companies
-        </h1>
+      <h1 className="text-2xl font-bold mt-6 text-gray-600 border-b">
+        Recent Companies
+      </h1>
+      <div className="mt-1 rounded-lg overflow-hidden transition-all duration-300 bg-white border border-gray-100 hover:shadow-xl">
         <TableComponent />
       </div>
     </div>
