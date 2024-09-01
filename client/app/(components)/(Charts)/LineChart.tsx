@@ -124,7 +124,7 @@ const LineChart = () => {
   return (
     <div className="w-full">
       <div className="gap-4">
-        <div className=" h-[455px] col-span-12 xl:col-span-8 rounded-lg border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5">
+        <div className=" h-[455px] col-span-12 xl:col-span-8 px-5 pb-5 pt-7.5 dark:bg-boxdark sm:px-7.5">
           <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
             <div className="flex w-full flex-wrap gap-3 sm:gap-5 mt-5">
               <div className="flex w-1/4">

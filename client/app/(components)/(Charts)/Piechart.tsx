@@ -51,7 +51,7 @@ const chartConfig = {
 
 const Piechart = () => {
   return (
-    <Card className="flex flex-col justify-between">
+    <Card className="flex flex-col justify-between rounded-lg">
       <CardHeader className="items-center pb-0">
         <CardTitle>Pie Chart - Legend</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
