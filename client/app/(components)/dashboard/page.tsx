@@ -56,10 +56,12 @@ const Dashboard = () => {
           <Piechart />
         </div>
       </div>
-        <div className="mt-4 rounded-lg overflow-hidden bg-white">
-          <h1 className="text-2xl font-bold p-4">Recent Companies</h1>
-          <TableComponent />
-        </div>
+      <div className="mt-4 rounded-lg overflow-hidden bg-white">
+        <h1 className="text-2xl font-bold p-4 text-gray-600 border-b">
+          Recent Companies
+        </h1>
+        <TableComponent />
+      </div>
     </div>
   );
 };
