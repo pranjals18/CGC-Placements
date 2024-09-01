@@ -9,7 +9,6 @@ import {
 
 const TableComponent = () => {
   return (
-    <div className="border bg-white">
       <Table>
         <TableHeader className="text-lg font-semibold">
           <TableRow>
@@ -116,7 +115,6 @@ const TableComponent = () => {
           </TableRow>
         </TableBody>
       </Table>
-    </div>
   );
 };
 
