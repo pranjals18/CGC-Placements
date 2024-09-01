@@ -18,23 +18,23 @@ export const links: Link[] = [
     icon: GoHomeFill,
   },
   {
-    name: "Stocks",
-    path: "/stocks",
+    name: "Jobs",
+    path: "/jobs",
     icon: MdInsertChart,
   },
   {
-    name: "Top Investors",
-    path: "/top-investors",
+    name: "Track Job",
+    path: "/track_jobs",
     icon: PiChartLineFill,
   },
   {
-    name: "Wishlist",
-    path: "/wishlist",
+    name: "Bookmark",
+    path: "/bookmarks",
     icon: HiMiniBookmark,
   },
   {
-    name: "Paper Trading",
-    path: "/paper-trading",
+    name: "Profile",
+    path: "/profile",
     icon: MdCandlestickChart,
   },
 ];
