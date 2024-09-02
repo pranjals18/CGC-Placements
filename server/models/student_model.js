@@ -46,33 +46,9 @@ const studentSchema = new mongoose.Schema(
             required: true,
         },
 
-        address_details: {
-
-            address: {
-                type: String,
-                required: true,
-            },
-
-            state: {
-                type: String,
-                required: true,
-            },
-
-            city: {
-                type: String,
-                required: true,
-            },
-
-            pincode: {
-                type: Number,
-                required: true,
-            },
-
-            country: {
-                type: String,
-                required: true,
-            },
-
+        address: {
+            type: String,
+            required: true,
         },
 
         linkedin_url: {
@@ -82,7 +58,7 @@ const studentSchema = new mongoose.Schema(
 
         passout_year: {
             type: Number,
-            required: true,
+
         },
 
         applications: [

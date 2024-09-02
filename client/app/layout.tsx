@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "./(components)/(Sidebar)/Sidebar";
 import Providers from "./providers";
+import ProtectedLayout from "./ProtectedLayout";  // Adjust the import path as needed
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Sidebar />
-          <div>{children}</div>
+          <ProtectedLayout>{children}</ProtectedLayout>
         </Providers>
       </body>
     </html>

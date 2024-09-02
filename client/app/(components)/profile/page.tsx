@@ -5,7 +5,9 @@ import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 
-const Dashboard = () => {
+
+
+const Profile = () => {
   const { expand } = useExpandContext();
   const [edit, setEdit] = useState<boolean>(false);
   return (
@@ -271,7 +273,7 @@ const Dashboard = () => {
                 <label className="text-md  item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   Name
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   Jon Doe
                 </p>
               </div>
@@ -280,7 +282,7 @@ const Dashboard = () => {
                 <label className="text-md  item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   Roll Number
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   12345
                 </p>
               </div>
@@ -289,7 +291,7 @@ const Dashboard = () => {
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   Email
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   12345@gmail.com
                 </p>
               </div>
@@ -298,7 +300,7 @@ const Dashboard = () => {
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   Gender
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   Male
                 </p>
               </div>
@@ -307,7 +309,7 @@ const Dashboard = () => {
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   Branch
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   Data Science and Artificial Intelligence
                 </p>
               </div>
@@ -316,7 +318,7 @@ const Dashboard = () => {
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   CGPA
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   10.00
                 </p>
               </div>
@@ -325,7 +327,7 @@ const Dashboard = () => {
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   Phone Number
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   9876543210
                 </p>
               </div>
@@ -334,7 +336,7 @@ const Dashboard = () => {
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   Address
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   123 Main St, CA, San Francisco - 94105, USA
                 </p>
               </div>
@@ -343,7 +345,7 @@ const Dashboard = () => {
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black dark:text-white">
                   Graduation Year
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter dark:border-form-strokedark dark:text-white dark:focus:border-primary">
+                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
                   2025
                 </p>
               </div>
@@ -355,4 +357,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Profile;
