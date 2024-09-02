@@ -2,7 +2,7 @@ import Student from '../models/student_model.js';
 import Job from '../models/job_model.js';
 import bcrypt from 'bcrypt';
 import multer from 'multer';
-import path from 'path';
+import jwt from 'jsonwebtoken';
 
 // Set up multer for file uploads
 const storage = multer.diskStorage({
@@ -19,7 +19,52 @@ const upload = multer({ storage: storage }).fields([
     { name: 'resume', maxCount: 1 }
 ]);
 
-export const handleCreateStudent = async (req, res) => {
+// export const handleSignUpStudent = async (req, res) => {
+//     upload(req, res, async function (err) {
+//         if (err instanceof multer.MulterError) {
+//             return res.status(400).json({ message: err.message });
+//         } else if (err) {
+//             return res.status(400).json({ message: err.message });
+//         }
+
+//         try {
+//             const { name, roll_no, email, password, gender, cgpa, branch, phone_no, linkedin_url, passout_year, address } = req.body;
+
+//             if (!name || !roll_no || !email || !password || !gender || !cgpa || !branch || !phone_no || !address) {
+//                 return res.status(400).json({ message: 'All fields are required' });
+//             }
+
+//             const hashedPassword = await bcrypt.hash(password, 10);
+
+//             const profilePicPath = req.files?.profile_pic ? req.files.profile_pic[0].path : '';
+//             const resumePath = req.files?.resume ? req.files.resume[0].path : '';
+
+//             const student = new Student({
+//                 name,
+//                 roll_no,
+//                 email,
+//                 password: hashedPassword,
+//                 gender,
+//                 cgpa,
+//                 branch,
+//                 phone_no,
+//                 address,
+//                 linkedin_url,
+//                 passout_year,
+//                 profile_pic: profilePicPath,
+//                 resume: resumePath,
+//             });
+
+//             await student.save();
+//             res.status(201).json({ message: 'Student created successfully' });
+
+//         } catch (error) {
+//             res.status(400).json({ message: error.message });
+//         }
+//     });
+// };
+
+export const handleSignUpStudent = async (req, res) => {
     upload(req, res, async function (err) {
         if (err instanceof multer.MulterError) {
             return res.status(400).json({ message: err.message });
@@ -28,15 +73,14 @@ export const handleCreateStudent = async (req, res) => {
         }
 
         try {
-            const { name, roll_no, email, password, gender, cgpa, branch, phone_no, linkedin_url, passout_year, address_details } = req.body;
+            const { name, roll_no, email, password, gender, cgpa, branch, phone_no, linkedin_url, passout_year, address } = req.body;
 
-            if (!name || !roll_no || !email || !password || !gender || !cgpa || !branch || !phone_no || !address_details) {
+            if (!name || !roll_no || !email || !password || !gender || !cgpa || !branch || !phone_no || !address) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
 
             const hashedPassword = await bcrypt.hash(password, 10);
 
-            // Get file paths if uploaded
             const profilePicPath = req.files?.profile_pic ? req.files.profile_pic[0].path : '';
             const resumePath = req.files?.resume ? req.files.resume[0].path : '';
 
@@ -49,7 +93,7 @@ export const handleCreateStudent = async (req, res) => {
                 cgpa,
                 branch,
                 phone_no,
-                address_details,
+                address,
                 linkedin_url,
                 passout_year,
                 profile_pic: profilePicPath,
@@ -57,13 +101,55 @@ export const handleCreateStudent = async (req, res) => {
             });
 
             await student.save();
+
+            // Create a JWT token for the newly created student
+            const token = jwt.sign({ studentId: student._id }, 'shindept111', { expiresIn: '1h' });
+
+            // Send token in HttpOnly cookie
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'shindept18092003', // Use secure cookies in production
+                maxAge: 3600000, // 1 hour
+            });
+
             res.status(201).json({ message: 'Student created successfully' });
 
         } catch (error) {
-            res.status(400).json({ message: error.message });
+            console.error(error);
+            res.status(500).json({ message: 'Server error' });
         }
     });
 };
+
+
+
+
+export const handleSignInStudent = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const student = await Student.findOne({ email });
+        if (!student) return res.status(400).json({ message: 'Invalid credentials' });
+
+        const isMatch = await bcrypt.compare(password, student.password);
+        if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+
+        const token = jwt.sign({ studentId: student._id }, 'shindept111', { expiresIn: '1h' });
+
+        // Send token in HttpOnly cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'shindept18092003',
+            maxAge: 3600000, // 1 hour
+        });
+
+        res.json({ message: 'Login successful' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
 
 export const handleGetStudents = async (req, res) => {
     try {

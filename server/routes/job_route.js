@@ -1,27 +1,4 @@
-// import express from "express";
-
-// import { handleCreateJob, handleGetJobs, handleGetJobById, handleUpdateJob, handleDeleteJob } from '../controllers/job_controller.js';
-
-// const router = express.Router()
-
-// // CREATE
-// router.post('/create', handleCreateJob)
-
-// // READ
-// router.get('/get', handleGetJobs)
-// router.get('/get/:id', handleGetJobById)
-
-// // UPDATE
-// router.patch('/update/:id', handleUpdateJob)
-
-// // DELETE
-// router.delete('/delete/:id', handleDeleteJob)
-
-// export default router;
-
-
 import express from "express";
-
 import { 
     handleCreateJob, 
     handleGetJobs, 
@@ -31,6 +8,7 @@ import {
     handleApplyForJob,
     handleGetJobApplications
 } from '../controllers/job_controller.js';
+import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router()
 

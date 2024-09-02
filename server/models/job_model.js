@@ -70,10 +70,6 @@ const jobSchema = new mongoose.Schema(
             },
         ],
 
-        // recruiter: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: "recruiter",
-        // },
 
         status: {
             type: String,
@@ -120,7 +116,8 @@ export default Job;
 //             "location": "Mountain View, CA"
 //         }
 //     ],
-//     "recruiter": "5f9b9b5b9b9b5b9b5b9b5b9"
+//     "status": "open",
+//     "applications": [],
 // }
 
 // {
@@ -144,5 +141,6 @@ export default Job;
 //             "location": "Mountain View, CA"
 //         }
 //     ],
-//     "recruiter": "5f9b9b5b9b9b5b9b5b9b5b9"
+//     "status": "open",
+//     "applications": [],
 // }
