@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/app/(Context)/UserContext";
 
-const SignUp: React.FC = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,6 +22,7 @@ const SignUp: React.FC = () => {
     passout_year: "",
   });
 
+  const {setUser} = useUserContext();
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +62,8 @@ const SignUp: React.FC = () => {
           sameSite: "Strict",
         });
 
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
         router.push("/dashboard");
       } else {
         const errorData = await response.json();
@@ -252,7 +256,7 @@ const SignUp: React.FC = () => {
             <input
               type="submit"
               value="Create account"
-              className="w-full max-w-xs cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90 bg-blue-600"
+              className="w-full max-w-xs cursor-pointer rounded-lg border border-primary p-4 text-white transition hover:bg-opacity-90 bg-blue-600"
             />
           </div>
 

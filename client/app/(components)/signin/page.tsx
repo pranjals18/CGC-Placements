@@ -5,13 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation"; // Correct import for useRouter in Next.js 13
 import Cookies from "js-cookie";
+import { useUserContext } from "@/app/(Context)/UserContext";
 
-const SignIn: React.FC = () => {
-  const [email, setEmail] = useState("");
+const SignIn = () => {
+  const [roll_no, setRoll_no] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const {setUser} = useUserContext();
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ const SignIn: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ roll_no, password }),
       });
 
       const data = await response.json();
@@ -41,6 +43,9 @@ const SignIn: React.FC = () => {
           secure: true,
           sameSite: "Strict",
         });
+
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
 
         router.push("/dashboard");
       } else {
@@ -213,14 +218,14 @@ const SignIn: React.FC = () => {
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2 block font-medium text-black dark:text-white">
-                    Email
+                    Roll No.
                   </label>
                   <div className="relative">
                     <input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      type="text"
+                      placeholder="Enter your Roll No."
+                      value={roll_no}
+                      onChange={(e) => setRoll_no(e.target.value)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none"
                     />
 
@@ -253,7 +258,7 @@ const SignIn: React.FC = () => {
                   <input
                     type="submit"
                     value={loading ? "Signing In..." : "Sign In"}
-                    className={`w-full bg-blue-600 cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90 ${
+                    className={`w-full bg-blue-600 cursor-pointer rounded-lg border border-primary  p-4 text-white transition hover:bg-opacity-90 ${
                       loading ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                     disabled={loading}

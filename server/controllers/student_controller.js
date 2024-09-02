@@ -112,7 +112,20 @@ export const handleSignUpStudent = async (req, res) => {
                 maxAge: 3600000, // 1 hour
             });
 
-            res.status(201).json({ message: 'Student created successfully' });
+            res.status(201).json({
+                name: student.name,
+                roll_no: student.roll_no,
+                email: student.email,
+                gender: student.gender,
+                cgpa: student.cgpa,
+                branch: student.branch,
+                phone_no: student.phone_no,
+                address: student.address,
+                linkedin_url: student.linkedin_url,
+                passout_year: student.passout_year,
+                profile_pic: student.profile_pic,
+                resume: student.resume,
+            });
 
         } catch (error) {
             console.error(error);
@@ -125,10 +138,10 @@ export const handleSignUpStudent = async (req, res) => {
 
 
 export const handleSignInStudent = async (req, res) => {
-    const { email, password } = req.body;
+    const { roll_no, password } = req.body;
 
     try {
-        const student = await Student.findOne({ email });
+        const student = await Student.findOne({ roll_no });
         if (!student) return res.status(400).json({ message: 'Invalid credentials' });
 
         const isMatch = await bcrypt.compare(password, student.password);
@@ -143,7 +156,20 @@ export const handleSignInStudent = async (req, res) => {
             maxAge: 3600000, // 1 hour
         });
 
-        res.json({ message: 'Login successful' });
+        res.json({
+            name: student.name,
+            roll_no: student.roll_no,
+            email: student.email,
+            gender: student.gender,
+            cgpa: student.cgpa,
+            branch: student.branch,
+            phone_no: student.phone_no,
+            address: student.address,
+            linkedin_url: student.linkedin_url,
+            passout_year: student.passout_year,
+            profile_pic: student.profile_pic,
+            resume: student.resume,
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' });
