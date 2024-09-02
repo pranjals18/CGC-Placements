@@ -48,7 +48,7 @@ interface Application {
 
 async function fetchJobData(jobId: string): Promise<JobData | null> {
   try {
-    const response = await fetch(`http://localhost:8000/job/get/${jobId}`);
+    const response = await fetch(`http://localhost:5000/job/get/${jobId}`);
     if (!response.ok) throw new Error("Failed to fetch job data");
     return await response.json();
   } catch (error) {

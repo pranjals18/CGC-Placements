@@ -21,7 +21,7 @@ const SignIn = () => {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:8000/student/signin", {
+      const response = await fetch("http://localhost:5000/student/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
