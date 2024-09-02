@@ -22,7 +22,7 @@ const SignUp = () => {
     passout_year: "",
   });
 
-  const {setUser} = useUserContext();
+  const { setUser } = useUserContext();
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/student/signup", {
+      const response = await fetch("http://localhost:8000/student/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

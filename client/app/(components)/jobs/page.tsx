@@ -54,14 +54,18 @@ const Jobs: React.FC = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:5000/job/get");
+        const response = await fetch("http://localhost:8000/job/get");
         const data: Job[] = await response.json();
 
         console.log(data);
 
         // Assuming the data structure has a field to determine eligibility
-        const eligible = data.filter(job => job.roles.some(role => role.eligibility > 0));
-        const nonEligible = data.filter(job => job.roles.every(role => role.eligibility === 0));
+        const eligible = data.filter((job) =>
+          job.roles.some((role) => role.eligibility > 0)
+        );
+        const nonEligible = data.filter((job) =>
+          job.roles.every((role) => role.eligibility === 0)
+        );
 
         setEligibleJobs(eligible);
         setNonEligibleJobs(nonEligible);
@@ -101,7 +105,7 @@ const Jobs: React.FC = () => {
               </TableRow>
             </TableHeader>
             <TableBody className="text-gray-500 font-medium">
-              {eligibleJobs.flatMap(job =>
+              {eligibleJobs.flatMap((job) =>
                 job.roles.map((role, index) => (
                   <TableRow
                     key={index}

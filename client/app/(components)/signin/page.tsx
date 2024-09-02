@@ -13,7 +13,7 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const {setUser} = useUserContext();
+  const { setUser } = useUserContext();
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const SignIn = () => {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:5000/student/signin", {
+      const response = await fetch("http://localhost:8000/student/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const SignIn = () => {
 
           <div className="w-1/3">
             <div className="px-26 py-17 text-center">
-              <div className="inline-block"> 
+              <div className="inline-block">
                 <Image
                   className="hidden dark:block"
                   src={"/images/CGC-5.jpg"}
@@ -82,7 +82,6 @@ const SignIn = () => {
                   height={32}
                 />
               </div>
-
 
               <span className="mt-10 inline-block">
                 <svg

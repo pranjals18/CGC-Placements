@@ -1,12 +1,13 @@
 "use client";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { BsThreeDotsVertical } from "react-icons/bs";
+
+import Cookies from "js-cookie";
+import { IoLogOutOutline } from "react-icons/io5";
 import { IconType } from "react-icons";
 import Link from "next/link";
 import { useExpandContext } from "@/app/(Context)/ExpandContext";
 import { links } from "@/app/(Constants)/student_links";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 interface ILink {
   name: string;
@@ -17,6 +18,13 @@ interface ILink {
 const Sidebar = () => {
   const { expand, setExpand } = useExpandContext();
   const pathname = usePathname();
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
+
   return (
     <aside className="h-screen fixed z-99 overflow-hidden">
       <nav
@@ -92,37 +100,19 @@ const Sidebar = () => {
           })}
         </ul>
 
-        {/* <div className="border-t flex p-3 items-center">
-          <img
-            src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
-            alt=""
-            className="w-[53px] h-[53px] rounded-md"
-          />
-          <div
-            className={`flex justify-between items-center overflow-hidden transition-all ${
-              expand ? "w-52 ml-2" : "w-0"
-            }`}
+        <div
+          className={`border-t transition-all duration-300 flex p-3 ${
+            expand ? "px-12" : "px-2"
+          } items-center`}
+        >
+          <Button
+            onClick={handleLogout}
+            variant={"outline"}
+            className="w-full rounded-lg transition-all duration-300 hover:bg-blue-500 hover:text-white"
           >
-            <div className="leading-4">
-              <p
-                className={`text-md font-semibold transition-transform duration-300 ${
-                  !expand && "-translate-x-[300px]"
-                }`}
-              >
-                John Doe
-              </p>
-              <p
-                className={`text-xs text-gray-500 transition-transform duration-300 ${
-                  !expand && "-translate-x-[300px]"
-                }`}
-              >
-                Admin
-              </p>
-            </div>
-            <BsThreeDotsVertical className="text-xl" />
-          </div>
-        </div> */}
-        
+            <IoLogOutOutline className="text-3xl" />
+          </Button>
+        </div>
       </nav>
     </aside>
   );

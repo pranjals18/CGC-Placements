@@ -2,7 +2,7 @@
 
 import { useExpandContext } from "@/app/(Context)/ExpandContext";
 import React, { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import LineChart from "../(Charts)/LineChart";
 import Piechart from "../(Charts)/Piechart";
 import {
@@ -53,7 +53,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:5000/job/get");
+        const response = await fetch("http://localhost:8000/job/get");
         const data: Job[] = await response.json();
 
         // Assuming jobs are sorted by date and you want the latest 5 jobs
