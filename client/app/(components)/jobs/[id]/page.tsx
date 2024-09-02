@@ -48,7 +48,7 @@ interface Application {
 
 async function fetchJobData(jobId: string): Promise<JobData | null> {
   try {
-    const response = await fetch(`http://localhost:5000/job/get/${jobId}`);
+    const response = await fetch(`http://localhost:8000/job/get/${jobId}`);
     if (!response.ok) throw new Error("Failed to fetch job data");
     return await response.json();
   } catch (error) {
@@ -80,7 +80,8 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
   if (loading) return <Loader />; // Show loader until loading is complete
 
-  if (!jobData) return <div className="p-7 text-center">Job details not found.</div>;
+  if (!jobData)
+    return <div className="p-7 text-center">Job details not found.</div>;
 
   // Function to format numbers
   const formatNumber = (number: number) => {
@@ -129,14 +130,21 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
             <p className="text-gray-600 font-semibold">Email:</p>
             <p className="text-blue-500">
-              <a href={`mailto:${jobData.company.email}`} className="text-blue-500">
+              <a
+                href={`mailto:${jobData.company.email}`}
+                className="text-blue-500"
+              >
                 {jobData.company.email}
               </a>
             </p>
 
             <p className="text-gray-600 font-semibold">Website:</p>
             <p className="text-blue-500">
-              <a href={jobData.company.website} target="_blank" rel="noopener noreferrer">
+              <a
+                href={jobData.company.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {jobData.company.website}
               </a>
             </p>
@@ -150,7 +158,10 @@ export default function JobPage({ params }: { params: { id: string } }) {
               <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-3">
                 <FaMoneyBillAlt className="text-green-500" />
                 <p className="text-lg font-semibold">
-                  Salary: <span className="font-normal">${formatNumber(role.salary)}</span>
+                  Salary:{" "}
+                  <span className="font-normal">
+                    ${formatNumber(role.salary)}
+                  </span>
                 </p>
               </div>
               <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-3">
@@ -162,25 +173,33 @@ export default function JobPage({ params }: { params: { id: string } }) {
               <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-3">
                 <FaBriefcase className="text-orange-500" />
                 <p className="text-lg font-semibold">
-                  Employment Type: <span className="font-normal">{role.employment_type}</span>
+                  Employment Type:{" "}
+                  <span className="font-normal">{role.employment_type}</span>
                 </p>
               </div>
               <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-3">
                 <FaCalendarAlt className="text-red-500" />
                 <p className="text-lg font-semibold">
-                  Application Deadline: <span className="font-normal">{formatDate(role.application_deadline)}</span>
+                  Application Deadline:{" "}
+                  <span className="font-normal">
+                    {formatDate(role.application_deadline)}
+                  </span>
                 </p>
               </div>
               <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-3">
                 <FaUserAlt className="text-purple-500" />
                 <p className="text-lg font-semibold">
-                  Minimum Experience: <span className="font-normal">{role.min_experience} years</span>
+                  Minimum Experience:{" "}
+                  <span className="font-normal">
+                    {role.min_experience} years
+                  </span>
                 </p>
               </div>
               <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-3">
                 <FaTachometerAlt className="text-teal-500" />
                 <p className="text-lg font-semibold">
-                  Eligibility: <span className="font-normal">{role.eligibility}%</span>
+                  Eligibility:{" "}
+                  <span className="font-normal">{role.eligibility}%</span>
                 </p>
               </div>
             </div>
