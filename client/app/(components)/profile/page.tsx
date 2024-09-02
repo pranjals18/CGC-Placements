@@ -4,10 +4,12 @@ import { useExpandContext } from "@/app/(Context)/ExpandContext";
 import React from "react";
 import Image from "next/image";
 import { useState } from "react";
+import { useUserContext } from "@/app/(Context)/UserContext";
 
 
 
 const Profile = () => {
+  const {user} = useUserContext();
   const { expand } = useExpandContext();
   const [edit, setEdit] = useState<boolean>(false);
   return (
@@ -33,7 +35,7 @@ const Profile = () => {
             <div className="absolute bottom-3 right-3 z-10 xsm:bottom-4 xsm:right-4">
               <label
                 htmlFor="cover"
-                className="flex cursor-pointer w-20 items-center justify-center gap-2 rounded bg-primary px-2 py-1 text-sm font-medium text-white bg-[#392ff1] hover:bg-opacity-80" 
+                className="flex cursor-pointer w-20 items-center justify-center gap-2 rounded  px-2 py-1 text-sm font-medium text-white bg-[#392ff1] hover:bg-opacity-80" 
               >
                 <input
                   type="file"
@@ -83,7 +85,7 @@ const Profile = () => {
                 />
                 <label
                   htmlFor="profile"
-                  className="absolute bottom-0 right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-primary text-white bg-[#392ff1] hover:bg-opacity-90 sm:bottom-2 sm:right-2"
+                  className="absolute bottom-0 right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full  text-white bg-[#392ff1] hover:bg-opacity-90 sm:bottom-2 sm:right-2"
                 >
                   <svg
                     className="fill-current"
@@ -117,10 +119,10 @@ const Profile = () => {
             </div>
             <div className="mt-4">
               <h3 className="mb-1.5 text-2xl font-semibold text-black dark:text-white">
-                Jon Doe
+                {user.name}
               </h3>
               <p className="font-medium">
-                Data Science and Artificial Intelligence
+                {user.branch}
               </p>
             </div>
           </div>
@@ -135,7 +137,7 @@ const Profile = () => {
 
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-md bg-primary px-8 py-2 text-center font-medium text-white bg-[#392ff1] hover:bg-opacity-90 w-28"
+                className="inline-flex items-center justify-center rounded-md  px-8 py-2 text-center font-medium text-white bg-[#392ff1] hover:bg-opacity-90 w-28"
                 onClick={() => setEdit(!edit)}
               >
                 Save
@@ -150,7 +152,7 @@ const Profile = () => {
 
                 <input
                   type="text"
-                  placeholder="Name"
+                  placeholder={user.name}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -162,7 +164,7 @@ const Profile = () => {
 
                 <input
                   type="text"
-                  placeholder="Roll Number"
+                  placeholder={user.roll_no}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -173,8 +175,8 @@ const Profile = () => {
                 </label>
 
                 <input
-                  type="text"
-                  placeholder="Email"
+                  type="email"
+                  placeholder={user.email}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -186,7 +188,7 @@ const Profile = () => {
 
                 <input
                   type="text"
-                  placeholder="Gender"
+                  placeholder={user.gender}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -198,7 +200,7 @@ const Profile = () => {
 
                 <input
                   type="text"
-                  placeholder="Branch"
+                  placeholder={user.branch}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -210,7 +212,7 @@ const Profile = () => {
 
                 <input
                   type="text"
-                  placeholder="CGPA"
+                  placeholder={user.cgpa.toString()}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -222,7 +224,7 @@ const Profile = () => {
 
                 <input
                   type="text"
-                  placeholder="Phone Number"
+                  placeholder={user.phone_no}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -234,7 +236,7 @@ const Profile = () => {
 
                 <input
                   type="text"
-                  placeholder="Address"
+                  placeholder={user.address}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -246,7 +248,7 @@ const Profile = () => {
 
                 <input
                   type="text"
-                  placeholder="Graduation Year"
+                  placeholder={user.passout_year}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -261,7 +263,7 @@ const Profile = () => {
 
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-md bg-primary px-8 py-2 text-center font-medium text-white bg-[#392ff1] hover:bg-opacity-90 w-28"
+                className="inline-flex items-center justify-center rounded-md  px-8 py-2 text-center font-medium text-white bg-[#392ff1] hover:bg-opacity-90 w-28"
                 onClick={() => setEdit(!edit)}
               >
                 Edit
@@ -274,7 +276,7 @@ const Profile = () => {
                   Name
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  Jon Doe
+                  {user.name}
                 </p>
               </div>
 
@@ -283,7 +285,7 @@ const Profile = () => {
                   Roll Number
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  12345
+                  {user.roll_no}
                 </p>
               </div>
 
@@ -292,7 +294,7 @@ const Profile = () => {
                   Email
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  12345@gmail.com
+                  {user.email}
                 </p>
               </div>
 
@@ -301,7 +303,7 @@ const Profile = () => {
                   Gender
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  Male
+                  {user.gender}
                 </p>
               </div>
 
@@ -310,7 +312,7 @@ const Profile = () => {
                   Branch
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  Data Science and Artificial Intelligence
+                  {user.branch}
                 </p>
               </div>
 
@@ -319,7 +321,7 @@ const Profile = () => {
                   CGPA
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  10.00
+                  {user.cgpa.toString()}
                 </p>
               </div>
 
@@ -328,7 +330,7 @@ const Profile = () => {
                   Phone Number
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  9876543210
+                  {user.phone_no}
                 </p>
               </div>
 
@@ -337,7 +339,7 @@ const Profile = () => {
                   Address
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  123 Main St, CA, San Francisco - 94105, USA
+                  {user.address}
                 </p>
               </div>
 
@@ -346,7 +348,7 @@ const Profile = () => {
                   Graduation Year
                 </label>
                 <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition  disabled:bg-whiter">
-                  2025
+                  {user.passout_year}
                 </p>
               </div>
             </div>

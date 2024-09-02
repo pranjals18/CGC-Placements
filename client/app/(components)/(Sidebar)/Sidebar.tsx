@@ -92,7 +92,7 @@ const Sidebar = () => {
           })}
         </ul>
 
-        <div className="border-t flex p-3 items-center">
+        {/* <div className="border-t flex p-3 items-center">
           <img
             src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
             alt=""
@@ -121,7 +121,8 @@ const Sidebar = () => {
             </div>
             <BsThreeDotsVertical className="text-xl" />
           </div>
-        </div>
+        </div> */}
+        
       </nav>
     </aside>
   );
