@@ -93,6 +93,16 @@ const studentSchema = new mongoose.Schema(
             default: "",
         },
 
+        github_url: {
+            type: String,
+            default: "",
+        },
+
+        portfolio_url: {
+            type: String,
+            default: "",
+        },
+
     }, { timestamps: true }
 );
 

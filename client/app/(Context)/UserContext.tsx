@@ -230,6 +230,8 @@ export interface IUser {
   resume: string;
   bookmarks: string[];
   applications: IApplication[];
+  github_url: string;
+  portfolio_url: string;
 }
 
 interface UserContextType {
@@ -250,6 +252,8 @@ const INITIAL_USER: IUser = {
   passout_year: "",
   profile_pic: "",
   resume: "",
+  github_url: "",
+  portfolio_url: "",
   bookmarks: [],
   applications: [],
 };

@@ -27,6 +27,8 @@ const Profile = () => {
     passout_year: user.passout_year,
     linkedin_url: user.linkedin_url,
     resume: user.resume,
+    github_url: user.github_url,
+    portfolio_url: user.portfolio_url,
   });
 
   const handleProfileUpdate = async (
@@ -306,6 +308,19 @@ const Profile = () => {
 
               <div className="flex mt-6 items-center gap-5">
                 <label className="text-md w-[200px] font-medium text-black ">
+                  Resume
+                </label>
+                <input
+                  type="text"
+                  name="resume"
+                  value={formData.resume}
+                  onChange={handleInputChange}
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary"
+                />
+              </div>
+
+              <div className="flex mt-6 items-center gap-5">
+                <label className="text-md w-[200px] font-medium text-black ">
                   LinkedIn
                 </label>
                 <input
@@ -319,12 +334,25 @@ const Profile = () => {
 
               <div className="flex mt-6 items-center gap-5">
                 <label className="text-md w-[200px] font-medium text-black ">
-                  Resume
+                  Github
                 </label>
                 <input
                   type="text"
-                  name="resume"
-                  value={formData.resume}
+                  name="github_url"
+                  value={formData.github_url}
+                  onChange={handleInputChange}
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary"
+                />
+              </div>
+
+              <div className="flex mt-6 items-center gap-5">
+                <label className="text-md w-[200px] font-medium text-black ">
+                  Portfolio Website
+                </label>
+                <input
+                  type="text"
+                  name="portfolio_url"
+                  value={formData.portfolio_url}
                   onChange={handleInputChange}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary"
                 />
@@ -429,27 +457,23 @@ const Profile = () => {
                 </p>
               </div>
 
-              {/* <div className="flex mt-6 item-center gap-5">
-                <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
-                  LinkedIn
-                </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition disabled:bg-whiter">
-                  {formData.linkedin_url}
-                </p>
-              </div>
-
               <div className="flex mt-6 item-center gap-5">
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
                   Resume
                 </label>
-                <p className="text-md px-5 py-3 w-full bg-transparent text-black outline-none transition disabled:bg-whiter">
-                  {formData.resume}
-                </p>
-              </div> */}
+                <a
+                  href={formData.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
+                >
+                  {formData.resume ? "View Resume" : "No Resume Uploaded"}
+                </a>
+              </div>
 
               <div className="flex mt-6 item-center gap-5">
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
-                  LinkedIn
+                  LinkedIn Profile
                 </label>
                 <a
                   href={formData.linkedin_url}
@@ -465,17 +489,33 @@ const Profile = () => {
 
               <div className="flex mt-6 item-center gap-5">
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
-                  Resume
+                  Github Profile
                 </label>
                 <a
-                  href={formData.resume}
+                  href={formData.github_url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
                 >
-                  {formData.resume
-                    ? "View Resume"
-                    : "No Resume Uploaded"}
+                  {formData.github_url
+                    ? "Visit Github Profile"
+                    : "No Github Uploaded"}
+                </a>
+              </div>
+
+              <div className="flex mt-6 item-center gap-5">
+                <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
+                  Portfolio Website
+                </label>
+                <a
+                  href={formData.portfolio_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
+                >
+                  {formData.portfolio_url
+                    ? "Visit Portfolio Website"
+                    : "No Portfolio Uploaded"}
                 </a>
               </div>
 

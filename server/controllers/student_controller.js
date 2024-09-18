@@ -42,6 +42,7 @@ export const handleSignUpStudent = async (req, res) => {
                 passout_year,
                 profile_pic: profilePicPath,
                 resume: resumePath,
+
             });
 
             await student.save();
@@ -51,11 +52,11 @@ export const handleSignUpStudent = async (req, res) => {
 
             // Send token in HttpOnly cookie
             res.cookie("jwt", token, {
-            maxAge: 10 * 24 * 60 * 60 * 1000,
-            httpOnly: true,
-            sameSite: "none",
-            secure: true,
-            path: "/",
+                maxAge: 10 * 24 * 60 * 60 * 1000,
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+                path: "/",
             });
 
             res.status(201).json({
@@ -73,6 +74,8 @@ export const handleSignUpStudent = async (req, res) => {
                 resume: student.resume,
                 bookmarks: student.bookmarks,
                 applications: student.applications,
+                github_url: student.github_url,
+                portfolio_url: student.portfolio_url,
             });
 
         } catch (error) {
@@ -123,6 +126,8 @@ export const handleSignInStudent = async (req, res) => {
             bookmarks: student.bookmarks,
             bookmarks: student.bookmarks,
             applications: student.applications,
+            github_url: student.github_url,
+            portfolio_url: student.portfolio_url,
         };
 
         console.log(data);
@@ -142,6 +147,8 @@ export const handleSignInStudent = async (req, res) => {
             resume: student.resume,
             bookmarks: student.bookmarks,
             applications: student.applications,
+            github_url: student.github_url,
+            portfolio_url: student.portfolio_url,
         });
     } catch (err) {
         console.error(err);
@@ -166,7 +173,7 @@ export const handleGetStudentById = async (req, res) => {
         if (!student) {
             return res.status(404).json({ message: 'Student not found' });
         }
-       
+
         const data = {
             name: student.name,
             roll_no: student.roll_no,
@@ -183,6 +190,8 @@ export const handleGetStudentById = async (req, res) => {
             bookmarks: student.bookmarks,
             bookmarks: student.bookmarks,
             applications: student.applications,
+            github_url: student.github_url,
+            portfolio_url: student.portfolio_url,
         };
 
         console.log(data);
@@ -202,6 +211,8 @@ export const handleGetStudentById = async (req, res) => {
             resume: student.resume,
             bookmarks: student.bookmarks,
             applications: student.applications,
+            github_url: student.github_url,
+            portfolio_url: student.portfolio_url,
         });
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -228,7 +239,7 @@ export const handleUpdateStudent = async (req, res) => {
 
         console.log(student);
 
-       
+
         const data = {
             name: student.name,
             roll_no: student.roll_no,
@@ -245,6 +256,8 @@ export const handleUpdateStudent = async (req, res) => {
             bookmarks: student.bookmarks,
             bookmarks: student.bookmarks,
             applications: student.applications,
+            github_url: student.github_url,
+            portfolio_url: student.portfolio_url,
         };
 
         console.log(data);
@@ -264,6 +277,8 @@ export const handleUpdateStudent = async (req, res) => {
             resume: student.resume,
             bookmarks: student.bookmarks,
             applications: student.applications,
+            github_url: student.github_url,
+            portfolio_url: student.portfolio_url,
         });
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -287,7 +302,7 @@ export const handleDeleteStudent = async (req, res) => {
 export const handleAddApplication = async (req, res) => {
     try {
         const { jobId } = req.params;
-  
+
         const userId = req.user;
 
         const student = await Student.findById(userId);
@@ -336,63 +351,39 @@ export const handleRemoveApplication = async (req, res) => {
     }
 };
 
-// Add job to bookmarks
-// export const handleAddBookmark = async (req, res) => {
-//     try {
-//         const { jobId } = req.params;
-
-//         const userId = req.user;
-
-//         const student = await Student.findById(studentId);
-//         if (!student) {
-//             return res.status(404).json({ message: 'Student not found' });
-//         }
-
-//         if (student.bookmarks.includes(jobId)) {
-//             return res.status(400).json({ message: 'Job already bookmarked' });
-//         }
-
-//         student.bookmarks.push(jobId);
-//         await student.save();
-
-//         res.status(200).json({ message: 'Job bookmarked successfully' });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// };
 
 export const handleAddBookmark = async (req, res) => {
     try {
-      const { jobId } = req.params;
-  
-      // Ensure `req.user` contains the logged-in user's ID
-      const userId = req.user;
-      if (!userId) {
-        return res.status(401).json({ message: 'Unauthorized: User not authenticated' });
-      }
-  
-      // Find the student by userId
-      const student = await Student.findById(userId); // Use userId instead of studentId
-      if (!student) {
-        return res.status(404).json({ message: 'Student not found' });
-      }
-  
-      // Check if the job is already bookmarked
-      if (student.bookmarks.includes(jobId)) {
-        return res.status(400).json({ message: 'Job already bookmarked' });
-      }
-  
-      // Add the jobId to the bookmarks
-      student.bookmarks.push(jobId);
-      await student.save();
-  
-      res.status(200).json({ message: 'Job bookmarked successfully' });
+        const { jobId } = req.params;
+
+        // Ensure `req.user` contains the logged-in user's ID
+        const userId = req.user;
+        if (!userId) {
+            return res.status(401).json({ message: 'Unauthorized: User not authenticated' });
+        }
+
+        // Find the student by userId
+        const student = await Student.findById(userId); // Use userId instead of studentId
+        if (!student) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+
+        // Check if the job is already bookmarked
+        if (student.bookmarks.includes(jobId)) {
+            return res.status(400).json({ message: 'Job already bookmarked' });
+        }
+
+        // Add the jobId to the bookmarks
+        student.bookmarks.push(jobId);
+        await student.save();
+
+        res.status(200).json({ message: 'Job bookmarked successfully' });
     } catch (error) {
-      // Send a more detailed error message
-      res.status(400).json({ message: error.message });
+        // Send a more detailed error message
+        res.status(400).json({ message: error.message });
     }
-  };
-  
+};
+
 
 export const handleDeleteBookmark = async (req, res) => {
     try {
@@ -493,134 +484,51 @@ export const handleGetBookmarkById = async (req, res) => {
 
 
 
-
-
-// export const handleUpdateProfilePic = async (req, res) => {
-//     try {
-//         const profilePicUrl = req.file ? req.file.path : null;
-//         const { userId } = req.user; 
-
-//         const student = await Student.findOne({ userId });
-//         if (!student) {
-//             return res.status(404).json({ message: 'Student not found' });
-//         }
-
-//         student.profile_pic = profilePicUrl;
-//         await student.save();
-
-//         res.status(200).json({ message: 'Profile picture updated successfully', profilePicUrl });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// };
-
-
-
-
-
-
-// Middleware for handling profile picture upload
 export const uploadProfilePic = upload.single('profile_pic');
 
 // Route handler
 export const handleUploadProfilePic = async (req, res) => {
-  try {
-    // Check if file is uploaded
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded' });
+    try {
+        // Check if file is uploaded
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
+
+        const userId = req.user;
+
+        // Update student profile picture URL in the database
+        const student = await Student.findById(userId);
+        if (!student) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+
+        student.profile_pic = req.file.path; // Cloudinary URL
+        await student.save();
+
+        res.status(200).json({ profile_pic: req.file.path }); // Send Cloudinary URL back to client
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-
-    const userId = req.user;
-
-    // Update student profile picture URL in the database
-    const student = await Student.findById(userId);
-    if (!student) {
-      return res.status(404).json({ message: 'Student not found' });
-    }
-
-    student.profile_pic = req.file.path; // Cloudinary URL
-    await student.save();
-
-    res.status(200).json({ profile_pic: req.file.path }); // Send Cloudinary URL back to client
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
 };
 
 
 
 export const handleUploadResume = async (req, res) => {
     try {
-      if (!req.file) {
-        return res.status(400).json({ message: 'No file uploaded' });
-      }
-      const userId = req.user;
-      const student = await Student.findById(userId);
-      if (!student) {
-        return res.status(404).json({ message: 'Student not found' });
-      }
-  
-      student.resume = req.file.path;
-      await student.save();
-  
-      res.status(200).json({ resume: req.file.path });
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
+        const userId = req.user;
+        const student = await Student.findById(userId);
+        if (!student) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+
+        student.resume = req.file.path;
+        await student.save();
+
+        res.status(200).json({ resume: req.file.path });
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-  };
-
-
-
-
-
-
-
-
-// import { uploadImage, uploadPdf } from './uploadMiddleware'; // Cloudinary multer setups
-// import Student from '../models/studentModel'; // Your Student model
-
-// // Handler to upload resume and profile picture
-// export const handleUploadResume = async (req, res) => {
-//   try {
-//     const user = req.userId;
-//     const { profile_pic, resume } = req.files;
-
-//     // Error handling if no file is uploaded
-//     if (!profile_pic && !resume) {
-//       return res.status(400).json({ message: 'No files uploaded' });
-//     }
-
-//     // Update profile picture if provided
-//     let profilePicUrl;
-//     if (profile_pic) {
-//       profilePicUrl = profile_pic[0].path; // Cloudinary URL of the profile picture
-//     }
-
-//     // Update resume if provided
-//     let resumeUrl;
-//     if (resume) {
-//       resumeUrl = resume[0].path; // Cloudinary URL of the resume
-//     }
-
-//     // Find student by ID and update profile picture and resume URLs
-//     const student = await Student.findById(user);
-
-//     if (!student) {
-//       return res.status(404).json({ message: 'Student not found' });
-//     }
-
-//     if (profilePicUrl) student.profile_pic = profilePicUrl; // Update profile pic in DB
-//     if (resumeUrl) student.resume = resumeUrl; // Update resume in DB
-
-//     await student.save();
-
-//     res.status(200).json({
-//       message: 'Files uploaded successfully',
-//       profile_pic: profilePicUrl,
-//       resume: resumeUrl,
-//     });
-//   } catch (error) {
-//     console.error('Error uploading files:', error);
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// };
+};
