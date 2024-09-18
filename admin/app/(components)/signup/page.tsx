@@ -56,10 +56,12 @@ const SignUp = () => {
         const token = data.token;
 
         // Set the cookie using js-cookie
-        Cookies.set("token", token, {
-          path: "/",
+        Cookies.set("jwt", token, {
+          maxAge: 10 * 24 * 60 * 60 * 1000,
+          httpOnly: true,
+          sameSite: "none",
           secure: true,
-          sameSite: "Strict",
+          path: "/",
         });
 
         setUser(data);

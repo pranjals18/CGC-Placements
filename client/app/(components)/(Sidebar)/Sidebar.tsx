@@ -8,6 +8,7 @@ import { useExpandContext } from "@/app/(Context)/ExpandContext";
 import { links } from "@/app/(Constants)/student_links";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 interface ILink {
   name: string;
@@ -18,11 +19,25 @@ interface ILink {
 const Sidebar = () => {
   const { expand, setExpand } = useExpandContext();
   const pathname = usePathname();
+  const router = useRouter();
+
+  // const handleLogout = () => {
+  //   localStorage.removeItem("user");
+  //   Cookies.remove("jwt", {
+  //     path: "/",
+  //   });
+  //   // window.location.reload();
+  //   router.push("/signin");
+  // };
 
   const handleLogout = () => {
-    Cookies.remove("token");
     localStorage.removeItem("user");
-    window.location.reload();
+
+    // Remove the jwt cookie with path `/`
+    Cookies.remove("jwt", { path: "/" });
+
+    // Optionally, reload or redirect
+    router.push("/signin");
   };
 
   return (

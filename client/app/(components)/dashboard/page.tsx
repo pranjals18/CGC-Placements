@@ -79,7 +79,7 @@ const Dashboard = () => {
         expand ? "ml-56" : "ml-20"
       }`}
     >
-      <h1 className="text-2xl font-bold mb-1 mt-2 text-gray-600 border-b">
+      <h1 className="text-2xl font-bold mb-1 text-gray-600 border-b">
         Statistics
       </h1>
 

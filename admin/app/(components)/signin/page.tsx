@@ -34,16 +34,6 @@ const SignIn = () => {
       if (response.ok) {
         console.log("Sign-in successful", data);
 
-        // Assuming the server sends the token in the response
-        const token = data.token;
-
-        // Set the cookie using js-cookie
-        Cookies.set("token", token, {
-          path: "/",
-          secure: true,
-          sameSite: "Strict",
-        });
-
         setUser(data);
         localStorage.setItem("user", JSON.stringify(data));
 
