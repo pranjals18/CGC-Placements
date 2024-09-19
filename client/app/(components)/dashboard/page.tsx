@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import LineChart from "../(Charts)/LineChart";
 import Piechart from "../(Charts)/Piechart";
+
 import {
   Table,
   TableBody,
@@ -48,7 +49,15 @@ interface Job {
 const Dashboard = () => {
   const { expand } = useExpandContext();
   const [recentJobs, setRecentJobs] = useState<Job[]>([]);
-  const router = useRouter(); // Use useRouter for navigation
+  const router = useRouter();
+
+  const handleAllJobs = () => {
+    router.push("/jobs");
+  };
+
+  const handleAppliedJobs = () => {
+    router.push("/track-jobs");
+  };
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -88,6 +97,7 @@ const Dashboard = () => {
           className={`rounded-md flex flex-col gap-2 justify-end p-4 transition-all duration-300 h-32 bg-white hover:shadow-xl hover:pb-6 hover:pl-5 cursor-pointer ${
             expand ? "w-[calc(100%)]" : "w-[calc(100%)]"
           }`}
+          onClick={handleAllJobs}
         >
           <h1 className="text-3xl font-bold">35</h1>
           <h3 className="text-lg text-gray-400">Total Companies</h3>
@@ -97,6 +107,7 @@ const Dashboard = () => {
           className={`rounded-md flex flex-col gap-2 justify-end p-4 transition-all duration-300 h-32 bg-white hover:shadow-xl hover:pb-6 hover:pl-5 cursor-pointer ${
             expand ? "w-[calc(100%)]" : "w-[calc(100%)]"
           }`}
+          onClick={handleAllJobs}
         >
           <h1 className="text-3xl font-bold">30</h1>
           <h3 className="text-lg text-gray-400">Eligible Companies</h3>
@@ -106,6 +117,7 @@ const Dashboard = () => {
           className={`rounded-md flex flex-col gap-2 justify-end p-4 transition-all duration-300 h-32 bg-white hover:shadow-xl hover:pb-6 hover:pl-5 cursor-pointer ${
             expand ? "w-[calc(100%)]" : "w-[calc(100%)]"
           }`}
+          onClick={handleAppliedJobs}
         >
           <h1 className="text-3xl font-bold">20</h1>
           <h3 className="text-lg text-gray-400">Applied Companies</h3>
@@ -115,6 +127,7 @@ const Dashboard = () => {
           className={`rounded-md flex flex-col gap-2 justify-end p-4 transition-all duration-300 h-32 bg-white hover:shadow-xl hover:pb-6 hover:pl-5 cursor-pointer ${
             expand ? "w-[calc(100%)]" : "w-[calc(100%)]"
           }`}
+          onClick={handleAppliedJobs}
         >
           <h1 className="text-3xl font-bold">8</h1>
           <h3 className="text-lg text-gray-400">In Progress</h3>

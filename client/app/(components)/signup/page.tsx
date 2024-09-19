@@ -68,8 +68,7 @@ const SignUp = () => {
         localStorage.setItem("user", JSON.stringify(data));
         router.push("/dashboard");
       } else {
-        const errorData = await response.json();
-        alert(`Signup failed: ${errorData.message}`);
+        alert(`Signup failed: ${data.message}`);
       }
     } catch (error) {
       alert(`An error occurred: ${error}`);

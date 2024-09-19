@@ -8,84 +8,152 @@ import upload from '../middleware/uploadProfileMiddleware.js';
 dotenv.config();
 
 
+// export const handleSignUpStudent = async (req, res) => {
+
+//     try {
+//         const { name, roll_no, email, password, gender, cgpa, branch, phone_no, linkedin_url, passout_year, address } = req.body;
+
+//         if (!name || !roll_no || !email || !password || !gender || !cgpa || !branch || !phone_no || !address) {
+//             return res.status(400).json({ message: 'All fields are required' });
+//         }
+
+//         const hashedPassword = await bcrypt.hash(password, 10);
+
+//         const profilePicPath = req.files?.profile_pic ? req.files.profile_pic[0].path : '';
+//         const resumePath = req.files?.resume ? req.files.resume[0].path : '';
+
+//         const student = new Student({
+//             name,
+//             roll_no,
+//             email,
+//             password: hashedPassword,
+//             gender,
+//             cgpa,
+//             branch,
+//             phone_no,
+//             address,
+//             linkedin_url,
+//             passout_year,
+//             profile_pic: profilePicPath,
+//             resume: resumePath,
+
+//         });
+
+//         await student.save();
+
+//         // Create a JWT token for the newly created student
+//         const token = jwt.sign({ studentId: student._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+//         // Send token in HttpOnly cookie
+//         res.cookie("jwt", token, {
+//             maxAge: 10 * 24 * 60 * 60 * 1000,
+//             httpOnly: true,
+//             sameSite: "none",
+//             secure: true,
+//             path: "/",
+//         });
+
+//         res.status(201).json({
+//             name: student.name,
+//             roll_no: student.roll_no,
+//             email: student.email,
+//             gender: student.gender,
+//             cgpa: student.cgpa,
+//             branch: student.branch,
+//             phone_no: student.phone_no,
+//             address: student.address,
+//             linkedin_url: student.linkedin_url,
+//             passout_year: student.passout_year,
+//             profile_pic: student.profile_pic,
+//             resume: student.resume,
+//             bookmarks: student.bookmarks,
+//             applications: student.applications,
+//             github_url: student.github_url,
+//             portfolio_url: student.portfolio_url,
+//         });
+
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Server error' });
+//     }
+
+// };
+
+
 export const handleSignUpStudent = async (req, res) => {
-    upload(req, res, async function (err) {
-        if (err instanceof multer.MulterError) {
-            return res.status(400).json({ message: err.message });
-        } else if (err) {
-            return res.status(400).json({ message: err.message });
+    try {
+        const { 
+            name, 
+            roll_no, 
+            email, 
+            password, 
+            gender, 
+            cgpa, 
+            branch, 
+            phone_no,
+            address,
+            linkedin_url, 
+            passout_year, 
+
+        } = req.body;
+
+        // Check if all required fields are present
+        if (!name || !roll_no || !email || !password || !gender || !cgpa || !branch || !phone_no || !address) {
+            return res.status(400).json({ message: 'All fields are required' });
         }
 
-        try {
-            const { name, roll_no, email, password, gender, cgpa, branch, phone_no, linkedin_url, passout_year, address } = req.body;
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 12);
 
-            if (!name || !roll_no || !email || !password || !gender || !cgpa || !branch || !phone_no || !address) {
-                return res.status(400).json({ message: 'All fields are required' });
-            }
+        // Create the student object
+        const student = new Student({
+            name,
+            roll_no,
+            email,
+            password: hashedPassword,
+            gender,
+            cgpa,
+            branch,
+            phone_no,
+            address,
+            linkedin_url,
+            passout_year,
+        });
 
-            const hashedPassword = await bcrypt.hash(password, 10);
+        // Save the student to the database
+        await student.save();
 
-            const profilePicPath = req.files?.profile_pic ? req.files.profile_pic[0].path : '';
-            const resumePath = req.files?.resume ? req.files.resume[0].path : '';
+        // Create a JWT token for the newly created student
+        const token = jwt.sign({ studentId: student._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-            const student = new Student({
-                name,
-                roll_no,
-                email,
-                password: hashedPassword,
-                gender,
-                cgpa,
-                branch,
-                phone_no,
-                address,
-                linkedin_url,
-                passout_year,
-                profile_pic: profilePicPath,
-                resume: resumePath,
+        // Send token in HttpOnly cookie
+        res.cookie("jwt", token, {
+            maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
+            path: "/",
+        });
 
-            });
+        // Send the student data in the response
+        res.status(201).json({
+            name: student.name,
+            roll_no: student.roll_no,
+            email: student.email,
+            gender: student.gender,
+            cgpa: student.cgpa,
+            branch: student.branch,
+            phone_no: student.phone_no,
+            address: student.address,
+            linkedin_url: student.linkedin_url,
+            passout_year: student.passout_year,
+        });
 
-            await student.save();
-
-            // Create a JWT token for the newly created student
-            const token = jwt.sign({ studentId: student._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-            // Send token in HttpOnly cookie
-            res.cookie("jwt", token, {
-                maxAge: 10 * 24 * 60 * 60 * 1000,
-                httpOnly: true,
-                sameSite: "none",
-                secure: true,
-                path: "/",
-            });
-
-            res.status(201).json({
-                name: student.name,
-                roll_no: student.roll_no,
-                email: student.email,
-                gender: student.gender,
-                cgpa: student.cgpa,
-                branch: student.branch,
-                phone_no: student.phone_no,
-                address: student.address,
-                linkedin_url: student.linkedin_url,
-                passout_year: student.passout_year,
-                profile_pic: student.profile_pic,
-                resume: student.resume,
-                bookmarks: student.bookmarks,
-                applications: student.applications,
-                github_url: student.github_url,
-                portfolio_url: student.portfolio_url,
-            });
-
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Server error' });
-        }
-    });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
 };
-
-
 
 
 export const handleSignInStudent = async (req, res) => {
