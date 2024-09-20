@@ -78,26 +78,6 @@
 
 // export const useUserContext = () => useContext(UserContext);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 // import { useRouter } from "next/navigation";
 // import Loader from "../(components)/(loader)/Loader";
@@ -189,24 +169,13 @@
 
 // export const useUserContext = () => useContext(UserContext);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 import { useRouter } from "next/navigation";
 import Loader from "../(components)/(loader)/Loader";
 
@@ -276,7 +245,7 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
     const checkAuth = async () => {
       // Record the start time
       const start = Date.now();
-      
+
       // Perform authentication check
       const storedUser = localStorage.getItem("user");
       if (!storedUser) {
@@ -285,10 +254,9 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
         setUser(JSON.parse(storedUser));
         router.push("/dashboard");
       }
-      
 
       const elapsed = Date.now() - start;
-      
+
       if (elapsed < 500) {
         setTimeout(() => {
           setLoading(false);

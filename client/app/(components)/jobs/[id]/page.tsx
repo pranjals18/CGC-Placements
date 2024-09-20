@@ -51,7 +51,7 @@ interface JobData {
 
 async function fetchJobData(jobId: string): Promise<JobData | null> {
   try {
-    const response = await fetch(`http://localhost:5000/job/get/${jobId}`);
+    const response = await fetch(`http://localhost:8000/job/get/${jobId}`);
     if (!response.ok) throw new Error("Failed to fetch job data");
     return await response.json();
   } catch (error) {
@@ -107,7 +107,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
   // Function to check eligibility
   const isEligible = (eligibility: number) => {
-    return user?.cgpa *10 >= eligibility;
+    return user?.cgpa * 10 >= eligibility;
   };
 
   // Function to check if the deadline has passed
@@ -125,7 +125,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/student/applications/create/${jobId}`,
+        `http://localhost:8000/student/applications/create/${jobId}`,
         {
           method: "POST",
           credentials: "include",
@@ -162,7 +162,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Company Details Card */}
-        <div className="bg-white p-6 shadow-md rounded-md ml-4">
+        <div className="bg-white p-6 shadow-md rounded-md">
           <div className="flex flex-col items-center mb-4">
             <a
               href={jobData.company.website}
@@ -208,7 +208,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
         </div>
 
         {/* Job Role Details Card */}
-        <div className="bg-white p-6 shadow-md rounded-md space-y-4 ml-4">
+        <div className="bg-white p-6 shadow-md rounded-md space-y-4">
           {jobData.roles.map((role, index) => (
             <div key={index} className="space-y-4">
               <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-3">
@@ -264,7 +264,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
       </div>
 
       {/* Description and Apply Button Card */}
-      <div className="bg-white p-6 pl-12 shadow-md rounded-md space-y-4 ml-4">
+      <div className="bg-white p-6 pl-12 shadow-md rounded-md space-y-4">
         <h2 className="text-xl font-semibold mb-4">Job Description</h2>
         {jobData.roles.map((role, index) => (
           <p key={index} className="text-gray-700 mb-4">
@@ -283,11 +283,15 @@ export default function JobPage({ params }: { params: { id: string } }) {
               <button
                 onClick={() => handleAddApplication(id)}
                 className={`${
-                  isEligible(jobData.roles[0].eligibility) && !isDeadlinePassed(jobData.roles[0].application_deadline)
+                  isEligible(jobData.roles[0].eligibility) &&
+                  !isDeadlinePassed(jobData.roles[0].application_deadline)
                     ? "bg-blue-500 hover:bg-blue-600"
                     : "bg-gray-400 cursor-not-allowed"
                 } text-white px-8 py-2 rounded-md`}
-                disabled={!isEligible(jobData.roles[0].eligibility) || isDeadlinePassed(jobData.roles[0].application_deadline)}
+                disabled={
+                  !isEligible(jobData.roles[0].eligibility) ||
+                  isDeadlinePassed(jobData.roles[0].application_deadline)
+                }
               >
                 {isEligible(jobData.roles[0].eligibility)
                   ? isDeadlinePassed(jobData.roles[0].application_deadline)
@@ -295,11 +299,14 @@ export default function JobPage({ params }: { params: { id: string } }) {
                     : "Apply"
                   : "Not Eligible"}
               </button>
-              {(!isEligible(jobData.roles[0].eligibility) || isDeadlinePassed(jobData.roles[0].application_deadline)) && (
-                <span className="absolute w-36 mb-2 bottom-full left-1/2 transform -translate-x-1/2 translate-y-1 space-x-1 bg-gray-700 text-white text-sm p-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-                  {isDeadlinePassed(jobData.roles[0].application_deadline)
+              {(!isEligible(jobData.roles[0].eligibility) ||
+                isDeadlinePassed(jobData.roles[0].application_deadline)) && (
+                <span className="absolute w-44 mb-2 bottom-full left-1/2 transform -translate-x-1/2 translate-y-1 space-x-1 bg-gray-700 text-white text-sm p-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                  {!isEligible(jobData.roles[0].eligibility)
+                    ? "Not eligible due to CGPA requirement"
+                    : isDeadlinePassed(jobData.roles[0].application_deadline)
                     ? "Application deadline has passed"
-                    : "Not eligible due to CGPA requirement"}
+                    : ""}
                 </span>
               )}
             </div>

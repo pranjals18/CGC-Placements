@@ -49,7 +49,7 @@ const Applications = () => {
       // Retrieve user data from localStorage
       const user = JSON.parse(localStorage.getItem("user") || "{}");
       const applicationsData = user.applications || [];
-      
+
       console.log("Retrieved applications from user data:", applicationsData);
 
       if (applicationsData.length === 0) {
@@ -62,7 +62,9 @@ const Applications = () => {
         setApplications(applicationsData);
 
         // Fetch job data for each application
-        const jobPromises = applicationsData.map((app: Application) => fetchJobData(app.company));
+        const jobPromises = applicationsData.map((app: Application) =>
+          fetchJobData(app.company)
+        );
         const fetchedJobs = await Promise.all(jobPromises);
         const validJobs = fetchedJobs.filter((job) => job !== null) as Job[];
 
@@ -81,7 +83,7 @@ const Applications = () => {
 
   async function fetchJobData(jobId: string): Promise<Job | null> {
     try {
-      const response = await fetch(`http://localhost:5000/job/get/${jobId}`);
+      const response = await fetch(`http://localhost:8000/job/get/${jobId}`);
       if (!response.ok) throw new Error("Failed to fetch job data");
       const data = await response.json();
       console.log("Fetched job data:", data);
@@ -125,7 +127,9 @@ const Applications = () => {
             <TableBody className="text-gray-500 font-medium">
               {jobs.map((job) => {
                 // Find the application for the current job
-                const application = applications.find((app) => app.company === job._id);
+                const application = applications.find(
+                  (app) => app.company === job._id
+                );
                 const status = application ? application.status : "Unknown";
 
                 return (

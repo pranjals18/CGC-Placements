@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -56,7 +55,7 @@ const Jobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:5000/job/get");
+        const response = await fetch("http://localhost:8000/job/get");
         const data: Job[] = await response.json();
 
         console.log(data);
@@ -93,7 +92,7 @@ const Jobs = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/student/bookmarks/create/${jobId}`,
+        `http://localhost:8000/student/bookmarks/create/${jobId}`,
         {
           method: "POST",
           credentials: "include",
@@ -144,11 +143,11 @@ const Jobs = () => {
                   {eligibleJobs.flatMap((job) =>
                     job.roles.map((role, index) => (
                       <TableRow key={index} className="hover:bg-slate-50">
-                        <TableCell className="font-medium">
-                          <div
-                            onClick={() => handleRowClick(job._id)}
-                            className="flex items-center cursor-pointer"
-                          >
+                        <TableCell
+                          onClick={() => handleRowClick(job._id)}
+                          className="font-medium cursor-pointer"
+                        >
+                          <div className="flex items-center">
                             <img
                               src={job.company.image}
                               className="h-6 w-6 mr-4"

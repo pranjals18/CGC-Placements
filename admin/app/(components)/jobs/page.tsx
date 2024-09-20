@@ -54,7 +54,7 @@ const Jobs: React.FC = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:5000/job/get");
+        const response = await fetch("http://localhost:8000/job/get");
         const data: Job[] = await response.json();
 
         console.log(data);
