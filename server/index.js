@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with your frontend origin
+  origin: 'https://cgcstudents.vercel.app', // Replace with your frontend origin
   credentials: true, // Allow cookies to be sent with requests
 };
 
