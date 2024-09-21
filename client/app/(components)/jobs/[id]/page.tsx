@@ -94,10 +94,10 @@ export default function JobPage({ params }: { params: { id: string } }) {
   };
 
   // Function to format dates
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toISOString().split("T")[0];
-  };
+  // const formatDate = (dateString: string) => {
+  //   const date = new Date(dateString);
+  //   return date.toISOString().split("T")[0];
+  // };
 
   // Function to check if user has already applied
   const hasApplied = () => {
@@ -242,7 +242,8 @@ export default function JobPage({ params }: { params: { id: string } }) {
                 <p className="text-lg font-semibold">
                   Application Deadline:{" "}
                   <span className="font-normal">
-                    {formatDate(role.application_deadline)}
+                    {/* {formatDate(role.application_deadline)} */}
+                    {role.application_deadline}
                   </span>
                 </p>
               </div>
