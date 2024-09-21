@@ -76,7 +76,7 @@ const Dashboard = () => {
 
         // eligible jobs
         const eligible = data.filter((job) =>
-          job.roles.some((role) => role.eligibility <= user.cgpa * 10)
+          job.roles.some((role) => role.eligibility <= user.cgpa)
         );
         setEligibleJobs(eligible.length);
 

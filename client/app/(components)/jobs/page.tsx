@@ -62,11 +62,11 @@ const Jobs = () => {
         console.log(data);
 
         const eligible = data.filter((job) =>
-          job.roles.some((role) => role.eligibility <= user.cgpa * 10)
+          job.roles.some((role) => role.eligibility <= user.cgpa)
         );
 
         const nonEligible = data.filter((job) =>
-          job.roles.some((role) => role.eligibility > user.cgpa * 10)
+          job.roles.some((role) => role.eligibility > user.cgpa)
         );
 
         setEligibleJobs(eligible);
