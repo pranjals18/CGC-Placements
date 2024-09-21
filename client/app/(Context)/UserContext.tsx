@@ -194,7 +194,7 @@ export interface IUser {
   phone_no: string;
   address: string;
   linkedin_url: string;
-  passout_year: string;
+  passout_year: number;
   profile_pic: string;
   resume: string;
   bookmarks: string[];
@@ -218,7 +218,7 @@ const INITIAL_USER: IUser = {
   phone_no: "",
   address: "",
   linkedin_url: "",
-  passout_year: "",
+  passout_year: 0,
   profile_pic: "",
   resume: "",
   github_url: "",
