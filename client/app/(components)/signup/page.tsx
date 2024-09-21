@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/app/(Context)/UserContext";
 
@@ -15,11 +14,11 @@ const SignUp = () => {
     gender: "",
     roll_no: "",
     branch: "",
-    cgpa: "",
+    cgpa: 0,
     phone_no: "",
     address: "",
     linkedin_url: "",
-    passout_year: "",
+    passout_year: 0,
   });
 
   const { setUser } = useUserContext();
@@ -54,8 +53,10 @@ const SignUp = () => {
 
       const data = await response.json();
 
+      console.log("Signup successful", data);
+
       if (response.ok) {
-        
+
         // const token = data.token;
 
         // Set the cookie using js-cookie
