@@ -40,6 +40,8 @@ const SignUp = () => {
       return;
     }
 
+    console.log("Hello World");
+
     try {
 
       const response = await fetch("https://cgc-placements.onrender.com/student/signup", {
@@ -82,7 +84,7 @@ const SignUp = () => {
   return (
     <div className=" flex items-center justify-center p-16 bg-slate-200">
       <div className="w-full max-w-6xl p-12 bg-white rounded-lg shadow-md">
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form className="flex flex-col">
           <div className="flex flex-wrap">
             <div className="w-full md:w-1/2 p-4">
               <div className="mb-4">
@@ -258,11 +260,12 @@ const SignUp = () => {
           </div>
 
           <div className="flex justify-center mb-6">
-            <input
-              type="submit"
-              value="Create account"
-              className="w-full max-w-xs cursor-pointer rounded-lg border border-primary p-4 text-white transition hover:bg-opacity-90 bg-blue-600"
-            />
+          <button
+
+          onClick={handleSubmit}
+          className="w-full max-w-[250px] rounded-full bg-[#3C50E0] py-4 px-6 text-white"
+          
+          >Create Account</button>
           </div>
 
           <div className="mt-6 text-center">
