@@ -134,7 +134,7 @@ const Dashboard = () => {
           }`}
           onClick={handleAppliedJobs}
         >
-          <h1 className="text-3xl font-bold">{user.applications.length}</h1>
+          <h1 className="text-3xl font-bold">{user.applications.length || 0}</h1>
           <h3 className="text-lg text-gray-400">Applied Companies</h3>
         </div>
 
@@ -144,7 +144,7 @@ const Dashboard = () => {
           }`}
           onClick={handleAppliedJobs}
         >
-          <h1 className="text-3xl font-bold">No logic</h1>
+          <h1 className="text-3xl font-bold">0</h1>
           <h3 className="text-lg text-gray-400">In Progress</h3>
         </div>
       </div>
