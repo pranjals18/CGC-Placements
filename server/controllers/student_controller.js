@@ -196,6 +196,8 @@ export const handleSignInStudent = async (req, res) => {
             applications: student.applications,
             github_url: student.github_url,
             portfolio_url: student.portfolio_url,
+            applications: student.applications,
+            bookmarks: student.bookmarks,
         };
 
         console.log(data);
@@ -217,6 +219,8 @@ export const handleSignInStudent = async (req, res) => {
             applications: student.applications,
             github_url: student.github_url,
             portfolio_url: student.portfolio_url,
+            applications: student.applications,
+            bookmarks: student.bookmarks,
         });
     } catch (err) {
         console.error(err);

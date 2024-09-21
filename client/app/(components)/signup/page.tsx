@@ -40,8 +40,6 @@ const SignUp = () => {
       return;
     }
 
-    console.log("Hello World");
-
     try {
 
       const response = await fetch("https://cgc-placements.onrender.com/student/signup", {
@@ -55,20 +53,9 @@ const SignUp = () => {
 
       const data = await response.json();
 
-      console.log("Signup successssssssful", data);
+      console.log("Signup successful", data);
 
       if (response.ok) {
-
-        // const token = data.token;
-
-        // Set the cookie using js-cookie
-        // Cookies.set("jwt", token, {
-        //   maxAge: 10 * 24 * 60 * 60 * 1000,
-        //   httpOnly: true,
-        //   sameSite: "none",
-        //   secure: true,
-        //   path: "/",
-        // });
 
         setUser(data);
         localStorage.setItem("user", JSON.stringify(data));
