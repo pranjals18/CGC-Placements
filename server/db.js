@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const mongoURL = "mongodb://localhost:27017/cgc";
-// const mongoURL = process.env.MONGO_URL;
+// const mongoURL = "mongodb://localhost:27017/cgc";
+const mongoURL = process.env.MONGO_URL;
 
 mongoose.connect(mongoURL, {})
 

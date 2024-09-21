@@ -81,7 +81,7 @@ const Applications = () => {
 
   async function fetchJobData(jobId: string): Promise<Job | null> {
     try {
-      const response = await fetch(`http://localhost:5000/job/get/${jobId}`);
+      const response = await fetch(`https://cgc-placements.onrender.com/job/get/${jobId}`);
       if (!response.ok) throw new Error("Failed to fetch job data");
       const data = await response.json();
       console.log("Fetched job data:", data);

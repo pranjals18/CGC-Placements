@@ -62,7 +62,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:5000/job/get");
+        const response = await fetch("https://cgc-placements.onrender.com/job/get");
         const data: Job[] = await response.json();
 
         // Assuming jobs are sorted by date and you want the latest 5 jobs

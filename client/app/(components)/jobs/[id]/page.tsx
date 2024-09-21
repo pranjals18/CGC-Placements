@@ -51,7 +51,7 @@ interface JobData {
 
 async function fetchJobData(jobId: string): Promise<JobData | null> {
   try {
-    const response = await fetch(`http://localhost:5000/job/get/${jobId}`);
+    const response = await fetch(`https://cgc-placements.onrender.com/job/get/${jobId}`);
     if (!response.ok) throw new Error("Failed to fetch job data");
     return await response.json();
   } catch (error) {
@@ -125,7 +125,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/student/applications/create/${jobId}`,
+        `https://cgc-placements.onrender.com/student/applications/create/${jobId}`,
         {
           method: "POST",
           credentials: "include",
@@ -162,7 +162,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Company Details Card */}
-        <div className="bg-white p-6 shadow-md rounded-md ml-4">
+        <div className="bg-white p-6 shadow-md rounded-md">
           <div className="flex flex-col items-center mb-4">
             <a
               href={jobData.company.website}
@@ -208,7 +208,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
         </div>
 
         {/* Job Role Details Card */}
-        <div className="bg-white p-6 shadow-md rounded-md space-y-4 ml-4">
+        <div className="bg-white p-6 shadow-md rounded-md space-y-4">
           {jobData.roles.map((role, index) => (
             <div key={index} className="space-y-4">
               <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-3">
@@ -264,7 +264,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
       </div>
 
       {/* Description and Apply Button Card */}
-      <div className="bg-white p-6 pl-12 shadow-md rounded-md space-y-4 ml-4">
+      <div className="bg-white p-6 pl-12 shadow-md rounded-md space-y-4">
         <h2 className="text-xl font-semibold mb-4">Job Description</h2>
         {jobData.roles.map((role, index) => (
           <p key={index} className="text-gray-700 mb-4">
