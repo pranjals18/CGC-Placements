@@ -55,16 +55,17 @@ const SignUp = () => {
       const data = await response.json();
 
       if (response.ok) {
-        const token = data.token;
+        
+        // const token = data.token;
 
         // Set the cookie using js-cookie
-        Cookies.set("jwt", token, {
-          maxAge: 10 * 24 * 60 * 60 * 1000,
-          httpOnly: true,
-          sameSite: "none",
-          secure: true,
-          path: "/",
-        });
+        // Cookies.set("jwt", token, {
+        //   maxAge: 10 * 24 * 60 * 60 * 1000,
+        //   httpOnly: true,
+        //   sameSite: "none",
+        //   secure: true,
+        //   path: "/",
+        // });
 
         setUser(data);
         localStorage.setItem("user", JSON.stringify(data));
