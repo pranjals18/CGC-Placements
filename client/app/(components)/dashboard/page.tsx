@@ -66,7 +66,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:8000/job/get");
+
+        const response = await fetch("https://cgc-placements.onrender.com/job/get");
+
         const data: Job[] = await response.json();
 
         // total jobs

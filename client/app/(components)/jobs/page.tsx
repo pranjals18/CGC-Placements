@@ -55,7 +55,8 @@ const Jobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:8000/job/get");
+        const response = await fetch("https://cgc-placements.onrender.com/job/get");
+
         const data: Job[] = await response.json();
 
         console.log(data);
@@ -92,7 +93,9 @@ const Jobs = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/student/bookmarks/create/${jobId}`,
+
+        `https://cgc-placements.onrender.com/student/bookmarks/create/${jobId}`,
+
         {
           method: "POST",
           credentials: "include",

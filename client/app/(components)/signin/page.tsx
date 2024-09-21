@@ -21,7 +21,8 @@ const SignIn = () => {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:8000/student/signin", {
+      const response = await fetch("https://cgc-placements.onrender.com/student/signin", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
