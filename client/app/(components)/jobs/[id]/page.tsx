@@ -109,7 +109,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
   // Function to check eligibility
   const isEligible = (eligibility: number) => {
-    return user?.cgpa * 10 >= eligibility;
+    return user?.cgpa >= eligibility;
   };
 
   // Function to check if the deadline has passed
