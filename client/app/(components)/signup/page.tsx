@@ -55,7 +55,7 @@ const SignUp = () => {
 
       const data = await response.json();
 
-      console.log("Signup successful", data);
+      console.log("Signup successssssssful", data);
 
       if (response.ok) {
 
