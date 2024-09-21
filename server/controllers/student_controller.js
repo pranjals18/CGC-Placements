@@ -93,8 +93,7 @@ export const handleSignUpStudent = async (req, res) => {
             phone_no,
             address,
             linkedin_url, 
-            passout_year, 
-
+            passout_year,
         } = req.body;
 
         // Check if all required fields are present
@@ -118,6 +117,8 @@ export const handleSignUpStudent = async (req, res) => {
             address,
             linkedin_url,
             passout_year,
+            bookmarks: [],
+            applications: [],
         });
 
         // Save the student to the database
@@ -147,6 +148,8 @@ export const handleSignUpStudent = async (req, res) => {
             address: student.address,
             linkedin_url: student.linkedin_url,
             passout_year: student.passout_year,
+            bookmarks: student.bookmarks,
+            applications: student.applications,
         });
 
     } catch (error) {
@@ -259,7 +262,6 @@ export const handleGetStudentById = async (req, res) => {
             passout_year: student.passout_year,
             profile_pic: student.profile_pic,
             resume: student.resume,
-            bookmarks: student.bookmarks,
             bookmarks: student.bookmarks,
             applications: student.applications,
             github_url: student.github_url,
