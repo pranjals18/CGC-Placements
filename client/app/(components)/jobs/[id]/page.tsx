@@ -51,7 +51,9 @@ interface JobData {
 
 async function fetchJobData(jobId: string): Promise<JobData | null> {
   try {
+
     const response = await fetch(`https://cgc-placements.onrender.com/job/get/${jobId}`);
+
     if (!response.ok) throw new Error("Failed to fetch job data");
     return await response.json();
   } catch (error) {
@@ -107,7 +109,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
   // Function to check eligibility
   const isEligible = (eligibility: number) => {
-    return user?.cgpa *10 >= eligibility;
+    return user?.cgpa * 10 >= eligibility;
   };
 
   // Function to check if the deadline has passed
@@ -125,7 +127,9 @@ export default function JobPage({ params }: { params: { id: string } }) {
 
     try {
       const response = await fetch(
+
         `https://cgc-placements.onrender.com/student/applications/create/${jobId}`,
+
         {
           method: "POST",
           credentials: "include",
@@ -283,11 +287,15 @@ export default function JobPage({ params }: { params: { id: string } }) {
               <button
                 onClick={() => handleAddApplication(id)}
                 className={`${
-                  isEligible(jobData.roles[0].eligibility) && !isDeadlinePassed(jobData.roles[0].application_deadline)
+                  isEligible(jobData.roles[0].eligibility) &&
+                  !isDeadlinePassed(jobData.roles[0].application_deadline)
                     ? "bg-blue-500 hover:bg-blue-600"
                     : "bg-gray-400 cursor-not-allowed"
                 } text-white px-8 py-2 rounded-md`}
-                disabled={!isEligible(jobData.roles[0].eligibility) || isDeadlinePassed(jobData.roles[0].application_deadline)}
+                disabled={
+                  !isEligible(jobData.roles[0].eligibility) ||
+                  isDeadlinePassed(jobData.roles[0].application_deadline)
+                }
               >
                 {isEligible(jobData.roles[0].eligibility)
                   ? isDeadlinePassed(jobData.roles[0].application_deadline)
@@ -295,11 +303,14 @@ export default function JobPage({ params }: { params: { id: string } }) {
                     : "Apply"
                   : "Not Eligible"}
               </button>
-              {(!isEligible(jobData.roles[0].eligibility) || isDeadlinePassed(jobData.roles[0].application_deadline)) && (
-                <span className="absolute w-36 mb-2 bottom-full left-1/2 transform -translate-x-1/2 translate-y-1 space-x-1 bg-gray-700 text-white text-sm p-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-                  {isDeadlinePassed(jobData.roles[0].application_deadline)
+              {(!isEligible(jobData.roles[0].eligibility) ||
+                isDeadlinePassed(jobData.roles[0].application_deadline)) && (
+                <span className="absolute w-44 mb-2 bottom-full left-1/2 transform -translate-x-1/2 translate-y-1 space-x-1 bg-gray-700 text-white text-sm p-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                  {!isEligible(jobData.roles[0].eligibility)
+                    ? "Not eligible due to CGPA requirement"
+                    : isDeadlinePassed(jobData.roles[0].application_deadline)
                     ? "Application deadline has passed"
-                    : "Not eligible due to CGPA requirement"}
+                    : ""}
                 </span>
               )}
             </div>

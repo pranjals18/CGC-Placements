@@ -14,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useUserContext } from "@/app/(Context)/UserContext";
 
 // Define the type for the role data
 interface Role {
@@ -48,6 +49,9 @@ interface Job {
 
 const Dashboard = () => {
   const { expand } = useExpandContext();
+  const { user } = useUserContext();
+  const [totalJobs, setTotalJobs] = useState<number>(0);
+  const [eligibleJobs, setEligibleJobs] = useState<number>(0);
   const [recentJobs, setRecentJobs] = useState<Job[]>([]);
   const router = useRouter();
 
@@ -62,8 +66,19 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
+
         const response = await fetch("https://cgc-placements.onrender.com/job/get");
+
         const data: Job[] = await response.json();
+
+        // total jobs
+        setTotalJobs(data.length);
+
+        // eligible jobs
+        const eligible = data.filter((job) =>
+          job.roles.some((role) => role.eligibility <= user.cgpa * 10)
+        );
+        setEligibleJobs(eligible.length);
 
         // Assuming jobs are sorted by date and you want the latest 5 jobs
         const latestJobs = data.slice(-5).reverse(); // Take the last 5 jobs and reverse to show latest first
@@ -99,7 +114,7 @@ const Dashboard = () => {
           }`}
           onClick={handleAllJobs}
         >
-          <h1 className="text-3xl font-bold">35</h1>
+          <h1 className="text-3xl font-bold">{totalJobs}</h1>
           <h3 className="text-lg text-gray-400">Total Companies</h3>
         </div>
 
@@ -109,7 +124,7 @@ const Dashboard = () => {
           }`}
           onClick={handleAllJobs}
         >
-          <h1 className="text-3xl font-bold">30</h1>
+          <h1 className="text-3xl font-bold">{eligibleJobs}</h1>
           <h3 className="text-lg text-gray-400">Eligible Companies</h3>
         </div>
 
@@ -119,7 +134,7 @@ const Dashboard = () => {
           }`}
           onClick={handleAppliedJobs}
         >
-          <h1 className="text-3xl font-bold">20</h1>
+          <h1 className="text-3xl font-bold">{user.applications.length}</h1>
           <h3 className="text-lg text-gray-400">Applied Companies</h3>
         </div>
 
@@ -129,7 +144,7 @@ const Dashboard = () => {
           }`}
           onClick={handleAppliedJobs}
         >
-          <h1 className="text-3xl font-bold">8</h1>
+          <h1 className="text-3xl font-bold">No logic</h1>
           <h3 className="text-lg text-gray-400">In Progress</h3>
         </div>
       </div>

@@ -83,7 +83,9 @@ const Bookmarks = () => {
 
   async function fetchJobData(jobId: string): Promise<Job | null> {
     try {
+
       const response = await fetch(`https://cgc-placements.onrender.com/job/get/${jobId}`);
+
       if (!response.ok) throw new Error("Failed to fetch job data");
       return await response.json();
     } catch (error) {
@@ -91,7 +93,6 @@ const Bookmarks = () => {
       return null;
     }
   }
-
 
   async function handleDeleteBookmark(jobId: string) {
     try {
@@ -169,9 +170,7 @@ const Bookmarks = () => {
                   </TableCell>
                   <TableCell>
                     <MdDeleteOutline
-                      onClick={() =>
-                        handleDeleteBookmark(job._id)
-                      }
+                      onClick={() => handleDeleteBookmark(job._id)}
                       className="text-xl text-right ml-auto mr-auto font-bold cursor-pointer text-red-400"
                     />
                   </TableCell>

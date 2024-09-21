@@ -44,6 +44,7 @@ const Profile = () => {
       if (formDataObj.has("profile_pic")) {
         const response = await fetch(
           "https://cgc-placements.onrender.com/student/uploadProfilePic",
+
           {
             method: "PUT",
             body: formDataObj,
@@ -122,7 +123,7 @@ const Profile = () => {
     >
       <div className="mx-auto max-w-[970px]">
         <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <div className="relative z-20 h-35 md:h-65">
+          <div className="relative z-20 h-35 md:h-65 w-full ">
             <Image
               src={"/images/cover/cover-01.png"}
               alt="profile cover"
@@ -461,62 +462,80 @@ const Profile = () => {
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
                   Resume
                 </label>
-                <a
-                  href={formData.resume}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
-                >
-                  {formData.resume ? "View Resume" : "No Resume Uploaded"}
-                </a>
+                {formData.resume ? (
+                  <a
+                    href={formData.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
+                  >
+                    View Resume
+                  </a>
+                ) : (
+                  <p className="text-md px-5 py-3 w-full bg-transparent text-gray-500 outline-none transition disabled:bg-whiter">
+                    No Resume
+                  </p>
+                )}
               </div>
 
               <div className="flex mt-6 item-center gap-5">
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
                   LinkedIn Profile
                 </label>
-                <a
-                  href={formData.linkedin_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
-                >
-                  {formData.linkedin_url
-                    ? "View LinkedIn Profile"
-                    : "No LinkedIn Profile"}
-                </a>
+                {formData.linkedin_url ? (
+                  <a
+                    href={formData.linkedin_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
+                  >
+                    Visit LinkedIn Profile
+                  </a>
+                ) : (
+                  <p className="text-md px-5 py-3 w-full bg-transparent text-gray-500 outline-none transition disabled:bg-whiter">
+                    No LinkedIn Profile
+                  </p>
+                )}
               </div>
 
               <div className="flex mt-6 item-center gap-5">
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
                   Github Profile
                 </label>
-                <a
-                  href={formData.github_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
-                >
-                  {formData.github_url
-                    ? "Visit Github Profile"
-                    : "No Github Uploaded"}
-                </a>
+                {formData.github_url ? (
+                  <a
+                    href={formData.github_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
+                  >
+                    Visit Github Profile
+                  </a>
+                ) : (
+                  <p className="text-md px-5 py-3 w-full bg-transparent text-gray-500 outline-none transition disabled:bg-whiter">
+                    No Github Profile
+                  </p>
+                )}
               </div>
 
               <div className="flex mt-6 item-center gap-5">
                 <label className="text-md item-center pt-3 w-[200px] font-medium text-black ">
                   Portfolio Website
                 </label>
-                <a
-                  href={formData.portfolio_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
-                >
-                  {formData.portfolio_url
-                    ? "Visit Portfolio Website"
-                    : "No Portfolio Uploaded"}
-                </a>
+                {formData.portfolio_url ? (
+                  <a
+                    href={formData.portfolio_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-md px-5 py-3 w-full bg-transparent text-[#392ff1] cursor-pointer outline-none transition"
+                  >
+                    Visit Portfolio Website
+                  </a>
+                ) : (
+                  <p className="text-md px-5 py-3 w-full bg-transparent text-gray-500 outline-none transition disabled:bg-whiter">
+                    No Portfolio Uploaded
+                  </p>
+                )}
               </div>
 
               {/* Repeat for other fields */}

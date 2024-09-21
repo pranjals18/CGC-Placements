@@ -42,7 +42,9 @@ const SignUp = () => {
     }
 
     try {
+
       const response = await fetch("https://cgc-placements.onrender.com/student/signup", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
