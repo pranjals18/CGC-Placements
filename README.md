@@ -33,7 +33,7 @@ A comprehensive web application designed to assist students in staying updated o
 ![Deadline Passed](./screenshots/deadline%20passed.png)
 
 ### Profile Section
-![Profile Section](./screenshots/profile%20section.png)
+![Profile Section](./screenshots/Profile_Page.png)
 
 ### Edit Profile Details
 ![Edit Profile Details](./screenshots/edit%20profile%20details.png)
