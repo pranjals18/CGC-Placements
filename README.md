@@ -4,7 +4,40 @@
 
 A comprehensive web application designed to assist students in staying updated on college placement activities, offering real-time information on company visits, and facilitating the placement process with advanced analytics.
 
-![Web Page Preview](./screenshots/home_dashboard.png)
+## Screenshots
+
+### Sign In
+![Sign In](./screenshots/sign_in.png)
+
+### Sign Up
+![Sign Up](./screenshots/sign_up.png)
+
+### Home Dashboard
+![Home Dashboard](./screenshots/home_dashboard.png)
+
+### Profile Section
+![Profile Section](./screenshots/profile%20section.png)
+
+### Jobs
+![Jobs](./screenshots/Jobs.png)
+
+### Applied Job Page
+![Applied Job Page](./screenshots/Applied%20Job%20page.png)
+
+
+### Track Jobs
+![Track Jobs](./screenshots/Track%20Jobs.png)
+
+### Bookmark
+![Bookmark](./screenshots/bookmark.png)
+
+### Deadline Passed
+![Deadline Passed](./screenshots/deadline%20passed.png)
+
+### Edit Profile Details
+![Edit Profile Details](./screenshots/edit%20profile%20details.png)
+
+
 
 ## Features
 
