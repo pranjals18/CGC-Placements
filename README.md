@@ -10,13 +10,11 @@ A comprehensive web application designed to assist students in staying updated o
 ![Sign In](./screenshots/sign_in.png)
 
 ### Sign Up
-![Sign Up](./screenshots/sign_up.png)
+![Sign Up](./screenshots/SignUp.png)
 
-### Home Dashboard
+### Dashboard
 ![Home Dashboard](./screenshots/home_dashboard.png)
 
-### Profile Section
-![Profile Section](./screenshots/profile%20section.png)
 
 ### Jobs
 ![Jobs](./screenshots/Jobs.png)
@@ -34,10 +32,11 @@ A comprehensive web application designed to assist students in staying updated o
 ### Deadline Passed
 ![Deadline Passed](./screenshots/deadline%20passed.png)
 
+### Profile Section
+![Profile Section](./screenshots/profile%20section.png)
+
 ### Edit Profile Details
 ![Edit Profile Details](./screenshots/edit%20profile%20details.png)
-
-
 
 ## Features
 
