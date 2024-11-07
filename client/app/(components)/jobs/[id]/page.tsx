@@ -93,12 +93,6 @@ export default function JobPage({ params }: { params: { id: string } }) {
     return new Intl.NumberFormat("en-US").format(number);
   };
 
-  // Function to format dates
-  // const formatDate = (dateString: string) => {
-  //   const date = new Date(dateString);
-  //   return date.toISOString().split("T")[0];
-  // };
-
   // Function to check if user has already applied
   const hasApplied = () => {
     if (!user) return false;

@@ -21,15 +21,17 @@ const SignIn = () => {
     setError(null);
 
     try {
-      const response = await fetch("https://cgc-placements.onrender.com/student/signin", {
-
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ roll_no, password }),
-      });
+      const response = await fetch(
+        "https://cgc-placements.onrender.com/student/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ roll_no, password }),
+        }
+      );
 
       const data = await response.json();
 
@@ -54,11 +56,11 @@ const SignIn = () => {
     <div className="h-screen w-screen p-32">
       <div className="rounded-sm bg-white shadow-default">
         <div className="flex flex-wrap items-center">
-          <div className="w-1/6"></div>
+          <div className="w-1/6 xl:w-1/6 lg:w-1/6 md:hidden sm:hidden"></div>
 
-          <div className="w-1/3">
+          <div className="w-1/3 xl:w-1/3 lg:w-1/3 md:w-full sm:w-full">
             <div className="px-26 py-17 text-center">
-              <div className="inline-block">
+              <div className="inline-block xl:w-auto lg:w-auto md:w-auto sm:w-1/3">
                 <Image
                   className="hidden dark:block"
                   src={"/images/CGC-5.jpg"}
@@ -75,10 +77,10 @@ const SignIn = () => {
                 />
               </div>
 
-              <span className="mt-10 inline-block">
+              <span className="inline-block md:display-none sm:display-none">
                 <svg
-                  width="350"
-                  height="350"
+                  width="100%"
+                  height="100%"
                   viewBox="0 0 350 350"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -200,7 +202,7 @@ const SignIn = () => {
             </div>
           </div>
 
-          <div className="w-1/3">
+          <div className="w-1/3 xl:w-1/2 lg:w-1/2 md:w-full sm:w-full">
             <div className="w-full p-4 sm:p-12 xl:p-17">
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                 Sign In to CGC
@@ -272,7 +274,7 @@ const SignIn = () => {
             </div>
           </div>
 
-          <div className="w-1/6"></div>
+          <div className="w-1/6 xl:w-1/6 lg:w-1/6 md:hidden sm:hidden"></div>
         </div>
       </div>
     </div>
