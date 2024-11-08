@@ -53,14 +53,15 @@ const SignIn = () => {
   };
 
   return (
-    <div className="h-screen w-screen p-32">
+    <div className="h-screen w-screen p-32 xs:p-10 sm:p-10 md:p-10 xxs:p-10">
       <div className="rounded-sm bg-white shadow-default">
-        <div className="flex flex-wrap items-center">
-          <div className="w-1/6 xl:w-1/6 lg:w-1/6 md:hidden sm:hidden"></div>
+        <div className="flex flex-wrap items-center sm:flex-col">
 
-          <div className="w-1/3 xl:w-1/3 lg:w-1/3 md:w-full sm:w-full">
-            <div className="px-26 py-17 text-center">
-              <div className="inline-block xl:w-auto lg:w-auto md:w-auto sm:w-1/3">
+          <div className="w-1/6 xl:w-1/6 lg:w-1/6 md:hidden sm:hidden xs:hidden xxs:hidden"></div>
+
+          <div className="xl:w-1/3 lg:w-1/3 md:w-full sm:w-full xs:w-full xxs:w-full">
+            <div className="px-26 py-17 text-center items-center">
+              <div className="flex justify-center items-center mb-10">
                 <Image
                   className="hidden dark:block"
                   src={"/images/CGC-5.jpg"}
@@ -77,7 +78,7 @@ const SignIn = () => {
                 />
               </div>
 
-              <span className="inline-block md:display-none sm:display-none">
+              <span className="inline-block">
                 <svg
                   width="100%"
                   height="100%"
@@ -202,7 +203,7 @@ const SignIn = () => {
             </div>
           </div>
 
-          <div className="w-1/3 xl:w-1/2 lg:w-1/2 md:w-full sm:w-full">
+          <div className="xl:w-1/2 lg:w-1/2 md:w-full sm:w-full xs:w-full xxs:w-full">
             <div className="w-full p-4 sm:p-12 xl:p-17">
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                 Sign In to CGC
@@ -274,7 +275,8 @@ const SignIn = () => {
             </div>
           </div>
 
-          <div className="w-1/6 xl:w-1/6 lg:w-1/6 md:hidden sm:hidden"></div>
+          <div className="w-1/6 xl:w-1/6 lg:w-1/6 md:hidden sm:hidden xs:hidden xxs:hidden"></div>
+
         </div>
       </div>
     </div>
