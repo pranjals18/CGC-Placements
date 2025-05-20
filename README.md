@@ -56,7 +56,7 @@ A comprehensive web application designed to assist students in staying updated o
 - **Backend**: Node.js, Express.js, MongoDB
 - **Authentication**: JWT (JSON Web Tokens), bcrypt
 - **Database**: MongoDB
-- **Deployment**: (Add the details of hosting service here)
+- **Deployment**: Vercel (for frontend) and Render (for backend)
 
 ## Installation and Setup
 
